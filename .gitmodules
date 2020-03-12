@@ -1,0 +1,3 @@
+[submodule "contents-docs"]
+	path = contents-docs
+	url = https://github.com/WisetrackerTechteam/guide.git

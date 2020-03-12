@@ -1,0 +1,506 @@
+@font-face {
+  font-family: 'SourceHanSans';
+  font-style: bold;
+  font-weight: 700;
+  src: url(../fonts/SourceHanSansKR-Bold.otf);
+}
+@font-face {
+  font-family: 'SourceHanSans';
+  font-style: regular;
+  font-weight: 500;
+  src: url(../fonts/SourceHanSansKR-Regular.otf);
+}
+@font-face {
+  font-family: 'SourceHanSans';
+  font-style: light;
+  font-weight: 200;
+  src: url(../fonts/SourceHanSansKR-Light.otf);
+}
+html {
+  font-size: 12px;
+}
+body {
+  color: #101010;
+  font-family: 'SourceHanSans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  width: 100% !important;
+  overflow-y: scroll !important;
+}
+
+h3 {
+  font-size: 40px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+h4 {
+  font-size: 25px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+h5 {
+  font-size: 16px;
+}
+p {
+  font-size: 14px;
+}
+pre[class*='language-'] > code {
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+  border-left: none;
+  box-shadow: none;
+  background-color: #092c37;
+  color: #cfd4d6;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(50%, transparent),
+    color-stop(50%, rgba(69, 142, 209, 0.04))
+  );
+  background-image: -webkit-linear-gradient(
+    transparent 50%,
+    rgba(69, 142, 209, 0.04) 50%
+  );
+  background-image: linear-gradient(
+    transparent 50%,
+    rgba(69, 142, 209, 0.04) 50%
+  );
+  background-size: 3em 3em;
+  background-origin: content-box;
+  background-attachment: local;
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.function,
+.token.builtin,
+.token.inserted {
+  color: #51c0b3;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.token.variable {
+  color: #fff;
+  background: transparent;
+}
+pre[class*='language-'].line-numbers.line-numbers code {
+  padding-left: 20px;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword,
+.token.class-name {
+  color: #589fda;
+}
+
+.sider {
+  border-right: 1px solid #cfd4d6;
+}
+.ant-layout-content {
+  flex: auto;
+  min-height: 600px;
+  padding: 24px 0px 24px 40px;
+}
+/* footer */
+.ant-layout-footer {
+  padding: 0px;
+  color: #fff;
+  font-size: 14px;
+  background: #f0f2f5;
+}
+.footer {
+  position: relative;
+  background: #222627;
+  z-index: 11;
+  padding-bottom: 1px;
+}
+.footer .inner {
+  max-width: 1280px;
+  padding: 113px 0 0 0px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  transition: all 0.7s;
+}
+.footer .inner .footer_in {
+  position: relative;
+  padding: 0 35px;
+}
+
+.btn_send_message {
+  position: absolute;
+  top: -280px;
+  right: 0px;
+  transition: all 0.7s;
+}
+.btn_send_message a {
+  padding: 29px 0 29px 0;
+  color: #fff;
+  font-weight: 700;
+  line-height: 16px;
+  background-color: #000000;
+  width: 270px;
+  display: block;
+  z-index: 5;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.btn_send_message a span {
+  position: relative;
+  clear: both;
+  display: block;
+  padding: 0 0 0 20px;
+  margin-right: 77px;
+  text-align: left;
+}
+.btn_send_message a span:before {
+  content: '';
+  clear: both;
+  display: block;
+  width: 25px;
+  height: 1px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 4px;
+  right: 0;
+}
+.btn_send_message a span:after {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 1px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 4px;
+  right: 0;
+  transform: rotate(90deg);
+  transform: bottom left;
+}
+.btn_send_message .t {
+  color: #000;
+  font-size: 24px;
+  line-height: 24px;
+  margin-bottom: 70px;
+  padding: 60px 0 0 40px;
+}
+.btn_send_message .send_box {
+  width: 499px;
+  background: #fff;
+  position: absolute;
+  bottom: -575px;
+  right: 0;
+  transition: all 0.3s;
+  overflow: hidden;
+  height: 0;
+  z-index: 4;
+}
+.btn_send_message.active .send_box {
+  height: 781px;
+  position: relative;
+  left: -43px;
+  bottom: 629px;
+}
+.btn_send_message .any_question {
+  padding: 0px 40px 190px 40px;
+}
+.btn_send_message .any_question input {
+  padding: 0 0 0 19px;
+  margin: 0;
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  color: #666666;
+  font-weight: 100;
+  border: 1px solid #d6d6d6;
+}
+.btn_send_message .any_question textarea {
+  width: 100%;
+  border: 0;
+  height: 160px;
+  font-size: 18px;
+  color: #666666;
+  font-family: 'noto-cj-sc', sans-serif;
+  font-weight: 100;
+  border: 1px solid #c7c7c7;
+  padding: 16px 20px;
+}
+.btn_send_message .any_question dt {
+  color: #000;
+  padding-bottom: 20px;
+}
+.btn_send_message .any_question dd {
+  font-size: 18px;
+  color: #666666;
+  margin-bottom: 50px;
+  border-bottom: 0px solid #efefef;
+  padding-bottom: 0px;
+}
+.btn_send_message .any_question dd:last-child {
+  margin-bottom: 0;
+}
+
+.footer .inner .foot_box {
+  padding-bottom: 40px;
+  position: relative;
+}
+.footer .inner .foot_box:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+.footer .inner .copy {
+  width: 100%;
+  border-top: 1px solid #4d5152;
+  padding: 34px 0;
+  color: #555555;
+}
+.footer .inner .footer_list {
+  width: 100%;
+}
+.footer .inner .footer_list:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+.footer .inner .footer_list .footer_logo dt p {
+  width: 203px;
+  height: 40px;
+  background-image: url('/images/common/ico_logo_foot.svg');
+  background-size: 203px 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.footer .inner .footer_list li {
+  display: table-cell;
+  vertical-align: top;
+}
+.footer .inner .footer_list .n02 {
+  width: 28%;
+}
+.footer .inner .footer_list .n03 {
+  width: 19%;
+}
+.footer .inner .footer_list .n04 {
+}
+.footer .inner .footer_list dl {
+  color: #ffffff;
+  font-weight: 600;
+  height: 285px;
+}
+.footer .inner .footer_list dt {
+  width: 100%;
+  height: 40px;
+  display: block;
+  margin-bottom: 20px;
+  vertical-align: middle;
+  line-height: 40px;
+  font-weight: 600;
+  font-size: 16px;
+}
+.footer .inner .footer_list dd {
+  font-size: 13px;
+  line-height: 28px;
+}
+.footer .inner .footer_list dd a {
+  font-weight: 100;
+  display: block;
+  color: #a1a1a1;
+}
+.footer .inner .footer_list .footer_logo {
+  width: 34%;
+}
+.footer .inner .footer_list .footer_logo dd {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 30px;
+  color: #a1a1a1;
+}
+.footer .inner .footer_list .box .alink {
+}
+.footer .inner .footer_list .box .alink a {
+  height: 40px;
+  line-height: 40px;
+}
+.footer .inner .footer_list .alink a {
+  color: #fff;
+  font-weight: 600;
+  display: block;
+  font-size: 18px;
+  line-height: 18px;
+}
+.footer .inner .footer_list .alink:last-child {
+  margin-top: 28px;
+}
+.footer .inner .footer_list.list02 li.n02 {
+  margin-left: 33%;
+}
+.footer .inner .footer_list.list02 li:first-child {
+}
+.footer .inner .footer_list.list02 li {
+  float: left;
+}
+.footer .inner .footer_list.list02 li:last-child .alink:last-child {
+  margin-top: 15px;
+}
+.footer .inner .footer_list.list03 {
+  margin-top: -69px;
+  width: 100%;
+  height: 18px;
+  position: relative;
+}
+.footer .inner .footer_list.list03 li {
+  width: 100%;
+  text-align: left;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.footer .inner .footer_list.list03 .alink:last-child {
+  margin-top: 0px;
+  text-align: left;
+}
+.footer .inner .footer_list.list03 .alink a {
+  display: block;
+  text-align: left;
+}
+.footer .inner .alink a {
+  color: #fff;
+  font-weight: 600;
+  color: #fff;
+}
+.footer .inner.banner_footer {
+  padding-top: 120px;
+}
+
+/* guide */
+/*guide*/
+.guide_wr {
+  background: #fff;
+}
+.contacts.guide_conts {
+  background: #fff;
+}
+.contacts.guide_conts .contacts_ty ul li dd input {
+  background: #fff;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+.contacts.guide_conts .contacts_ty ul li dd textarea {
+  background: #fff;
+}
+.guide_wr .inner {
+  padding: 0 35px;
+  transition: all 0.7s;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.guide_wr .guide_list {
+  margin-left: 1%;
+}
+.guide_wr .guide_list:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+.guide_wr .guide_list .li {
+  float: left;
+  width: 49%;
+  height: 270px;
+  margin: 0 0 10px 1%;
+}
+.guide_wr .guide_list .li a {
+  display: block;
+}
+.guide_wr .guide_list .li:first-child {
+  margin-left: 0;
+}
+.guide_wr .guide_list .li:nth-child(3) {
+  margin-left: 0;
+  margin-bottom: 0;
+}
+.guide_wr .guide_list .li:nth-child(4) {
+  margin-bottom: 0;
+}
+.guide_wr .guide_list .li dl {
+  padding: 115px 0 0 25px;
+  color: #fff;
+  position: relative;
+  transition: all 0.7s;
+}
+.guide_wr .guide_list .li dl:after {
+  content: '';
+  clear: both;
+  display: block;
+  width: 180px;
+  height: 223px;
+  position: absolute;
+  top: 25px;
+  right: 29px;
+  background-size: 180px 203px;
+  z-index: 1;
+}
+.guide_wr .guide_list .li dl dt {
+  font-size: 22px;
+  letter-spacing: -0.2px;
+}
+.guide_wr .guide_list .li dl dd {
+  font-size: 14px;
+  line-height: 24px;
+  padding-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+.guide_wr .guide_list .li01 {
+  background: #2db2de url('../images/cont/bg_guide01.png') no-repeat center
+    center;
+  background-size: cover;
+}
+.guide_wr .guide_list .li02 {
+  background: #2099e7 url('../images/cont/bg_guide02.png') no-repeat center
+    center;
+  background-size: cover;
+}
+.guide_wr .guide_list .li03 {
+  background: #346db2 url('../images/cont/bg_guide03.png') no-repeat center
+    center;
+  background-size: cover;
+}
+.guide_wr .guide_list .li04 {
+  background: #1d4575 url('../images/cont/bg_guide04.png') no-repeat center
+    center;
+  background-size: cover;
+}
+
+.guide_wr .guide_list .li01 dl:after {
+  background: url('../images/cont/bg_guide01_2.svg') no-repeat center top;
+  background-size: 180px auto;
+}
+.guide_wr .guide_list .li02 dl:after {
+  background: url('../images/cont/bg_guide02_2.svg') no-repeat center top;
+  background-size: 180px auto;
+}
+.guide_wr .guide_list .li03 dl:after {
+  background: url('../images/cont/bg_guide03_2.svg') no-repeat center top;
+  background-size: 180px auto;
+}
+.guide_wr .guide_list .li04 dl:after {
+  background: url('../images/cont/bg_guide04_2.svg') no-repeat center top;
+  background-size: 180px auto;
+}
+.guide_ac_ty_wr {
+  background: #f9f9f9;
+  padding-bottom: 180px;
+}
+.guide_ac_ty_wr .ac_ty .li .a_btn {
+  background: #f9f9f9;
+}
