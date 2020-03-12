@@ -1,6 +1,3 @@
-[submodule "contents-docs"]
-	path = contents-docs
-	url = https://github.com/WisetrackerTechteam/guide.git
-[submodule "https:/github.com/WisetrackerTechteam/guide.git"]
-	path = https:/github.com/WisetrackerTechteam/guide.git
+[submodule "contents"]
+	path = /
 	url = https://github.com/WisetrackerTechteam/docs.git
