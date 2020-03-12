@@ -25,13 +25,12 @@ function isLinkItem(item: MenuItem): item is LinkItem {
 }
 
 function render(item: MenuItem, id: string) {
+  console.log(isLinkItem(item))
   if (isLinkItem(item)) {
     return (
       <Menu.Item key={item.link}>
         <Link to={item.link}>
-          <div>
-            {item.name}
-          </div>
+          <div>{item.name}</div>
         </Link>
       </Menu.Item>
     )

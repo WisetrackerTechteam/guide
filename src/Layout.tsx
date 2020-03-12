@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { Header } from './Header'
@@ -7,10 +7,10 @@ import { Layout } from 'antd'
 import { Sidebar } from './sidebar'
 import { TableOfContents } from './TableOfContents'
 import './css/style.css'
+
 const { Sider, Content, Footer } = Layout
 
 export function RootLayout({ children, sidebarRoot }: any) {
-  console.log('layout', children)
   return (
     <StaticQuery
       query={graphql`
@@ -53,9 +53,16 @@ export function RootLayout({ children, sidebarRoot }: any) {
 
         const { title } = data.site.siteMetadata
         const pathName = window.location.pathname.split('/').slice(1)
-        // const breadCrumb = pathName.splice(0, 1)
-        console.log(window.location.pathname, pathName)
-        console.log('from layout ', window)
+        // const h3TagList = document.getElementsByTagName('H3')
+        const [h3TagList, setH3TagList] = useState(null)
+        useEffect(() => {
+          console.log('LAYOUT 2')
+          setH3TagList([...document.querySelectorAll('H3')])
+        }, [])
+
+        console.log(pathName)
+        console.log(h3TagList)
+        console.log('LAYOUT 1')
         return (
           <div style={{ width: '100%', padding: 0, overflow: 'hidden' }}>
             <Helmet
@@ -71,164 +78,58 @@ export function RootLayout({ children, sidebarRoot }: any) {
 
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'auto 1fr auto',
                 height: '100%',
               }}
             >
               <div className="sider">
-                <Sidebar root={sidebarRoot} />
+                <div style={{ paddingTop: '10px' }}>
+                  <Sidebar root={sidebarRoot} />
+                </div>
               </div>
               <Layout>
                 <Content
-                  style={{
-                    background: '#fff',
-                    margin: 0,
-                  }}
+                  className={
+                    pathName[0] === 'docs' ? 'contents-doc' : 'contents-page'
+                  }
                 >
-                  <div>
-                    <span>Home</span>
+                  <div className={'container-breadCrumb'}>
+                    <span className={'step'}>Home</span>
                     {pathName.map(step => (
-                      <span> > {step}</span>
+                      <span key={step}>
+                        {' '}
+                        > <span className={'step'}>{step}</span>
+                      </span>
                     ))}
                   </div>
                   {children}
                 </Content>
+                {pathName[0] === 'docs' ? (
+                  <div className="contents-list">
+                    <div className="contents-list-title">Contents</div>
+                    {h3TagList === null
+                      ? null
+                      : h3TagList.map(
+                          (h3s, idx) => (
+                            console.log(h3s),
+                            (
+                              <div key={idx}>
+                                <a href={'#' + h3s.id}>{h3s.textContent}</a>
+                              </div>
+                            )
+                          )
+                        )}
+                  </div>
+                ) : null}
               </Layout>
               <TableOfContents />
             </div>
-            {/* <Layout>
+
+            <Layout>
               <Sider
                 width={200}
                 style={{ background: '#fff', height: '100%' }}
               />
-            </Layout> */}
-            <Footer>
-              <footer className="footer">
-                <div className="inner">
-                  <div className="footer_in">
-                    <div className="foot_box">
-                      <ul className="footer_list">
-                        <li className="footer_logo">
-                          <dl>
-                            <dt>
-                              <p></p>
-                            </dt>
-                            <dd>
-                              정밀한 IN-APP ANALYTICS 가 결합된
-                              <br />
-                              MOBILE APP
-                              <span>
-                                ATTRIBUTION으로
-                                <br />앱 마케팅을 최적화 하세요
-                              </span>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li className="n02">
-                          <dl>
-                            <dt>ATTRIBUTION</dt>
-                            <dd>
-                              <a href="/features/attribution#feature01">
-                                Web To App Conversion Tracking
-                              </a>
-                              <a href="/features/attribution#feature02">
-                                Multi Touch Attribution
-                              </a>
-                              <a href="/features/attribution#feature03">
-                                Wise Link
-                              </a>
-                              <a href="/features/attribution#feature04">
-                                Retargeting Attribution
-                              </a>
-                              <a href="/features/attribution#feature05">
-                                Custom In App Event &amp; Lookback Window
-                              </a>
-                              <a href="/features/attribution#feature06">
-                                Advanced Audience
-                              </a>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li className="n03">
-                          <dl>
-                            <dt>ANALYTICS</dt>
-                            <dd>
-                              <a href="/features/analytics#feature01">
-                                Advanced Filter
-                              </a>
-                              <a href="/features/analytics#feature02">
-                                Path Flow
-                              </a>
-                              <a href="/features/analytics#feature03">Funnel</a>
-                              <a href="/features/analytics#feature04">
-                                User Tier
-                              </a>
-                              <a href="/features/analytics#feature05">
-                                Custom Dashboard &amp; Datacard
-                              </a>
-                              <a href="/features/analytics#feature06">
-                                Raw Data
-                              </a>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li className="n04">
-                          <dl>
-                            <dt>ACTION</dt>
-                            <dd>
-                              <a href="/features/action#feature01">
-                                Push Message
-                              </a>
-                              <a href="/features/action#feature02">
-                                Multi Push Type(Image, Video, Hidden)
-                              </a>
-                              <a href="/features/action#feature03">
-                                Triggered Delivery &amp; Retargeting
-                              </a>
-                            </dd>
-                          </dl>
-                        </li>
-                      </ul>
-                      <ul className="footer_list list02">
-                        <li className="n02">
-                          <dl>
-                            <dt>CUSTOMER STORY</dt>
-                            <dd>
-                              <a href="#">금융결제원</a>
-                              <a href="#">홈&amp;쇼핑</a>
-                              <a href="#">올레티비</a>
-                              <a href="#">해피포인트</a>
-                              <a href="#">뉴발란스</a>
-                              <a href="#">신세계 면세점</a>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <div className="box">
-                            <p className="alink">
-                              <a href="/price">PRICE</a>
-                            </p>
-                            <p className="alink">
-                              <a href="/guide">SERVICE GUIDE</a>
-                            </p>
-                          </div>
-                        </li>
-                      </ul>
-                      <ul className="footer_list list03">
-                        <li>
-                          <p className="alink">
-                            <a href="#">개인정보 취급방침</a>
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <p className="copy">© 2020 Wisetracker</p>
-                  </div>
-                </div>
-              </footer>
-            </Footer>
+            </Layout>
           </div>
         )
       }}
