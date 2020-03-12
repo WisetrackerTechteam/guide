@@ -34,8 +34,24 @@
     "link": "",
     "items": [
       {
-        "name": "iOS",
-        "link": "/docs/sdk/Javascript"
+        "name": "Android",
+        "link": "/docs/SDK/Android"
+      },
+      {
+        "name": "Objective-C",
+        "link": "/docs/SDK/Objectc"
+      },
+      {
+        "name": "Swift",
+        "link": "/docs/SDK/Swift"
+      },
+      {
+        "name": "Javascript",
+        "link": "/docs/SDK/Javascript"
+      },
+      {
+        "name": "Unity",
+        "link": "/docs/SDK/Unity"
       }
     ]
   }
