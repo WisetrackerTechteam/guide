@@ -1,13 +1,13 @@
-### 1. SDK 다운로드 및 설치
+## 1. SDK 다운로드 및 설치
 
-#### 1.1 SDK 다운로드
+### 1.1 SDK 다운로드
 
-- XCode CocoaPad 환경에서 SDK 다운로드 방법
+#### XCode CocoaPad 환경에서 SDK 다운로드 방법
 
 XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다
 
 ```bat
-pod 'DOT'
+pod 'RW'
 ```
 
 기존에 SDK를 한번 설치한 경우에는 설치할SDK 버전을 표시해야 하는 경우도 있습니다. 아래와 같이 설치할 SDK버전을 명시적으로 표시하면 됩니다.
@@ -22,7 +22,7 @@ Podfile 에 해당라인을 추가한 후 Terminal 프로그램을 실행하여 
 cmd> pod install
 ```
 
-#### 1.2 SDK 세팅
+### 1.2 SDK 세팅
 
 XCode 프로젝트의 info.plist 파일에 제공받은 App Analytics Key 정보를 추가합니다
 info.plist 파일을 open할때 **list로 보기** 가 아니라 **source로 보기**를 선탁하신뒤, 제공받으신 Key를 **Ctrl+V** 하시면 됩니다
@@ -65,9 +65,9 @@ http통신을 허용하기 위해 NSAppTransportSecurity 를 아래와 같이 �
 </dict>
 ```
 
-### 2. 기본 분석 적용 ( required )
+## 2. 기본 분석 적용 ( required )
 
-#### 2.1 SDK initialization
+### 2.1 SDK initialization
 
 XCode 프로젝트의 AppDelegate 가 정의된 클래스의 **didFinishLaunchingWithOptions** 함수에 SDK를 Initialization하기 위한 코드를 다음과 같이 적용합니다
 
@@ -81,7 +81,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 DOT가 사용되는 곳에서는 **import DOT**을 통해 import가 필요합니다.
 이하 적용 예시에서는 가독성을 위해 import하는 부분이 생략되어 있습니다.
 
-#### 2.2 방문 및 페이지 분석
+### 2.2 방문 및 페이지 분석
 
 앱의 실행 및 페이지 분석을 위해서는 각 화면의 이동시에 호출되는 Callback 함수에 다음과 같은 코드의 적용이 필요합니다
 아래의 2가지 코드를 적용후에는 기본적으로 분석되는 범위는 대략적으로 다음과 같습니다
@@ -104,7 +104,7 @@ override func viewWillDisappear(_ animated: Bool) {
 }
 ```
 
-### 3. Hybrid 앱 분석 방법 ( required in Hybrid App )
+## 3. Hybrid 앱 분석 방법 ( required in Hybrid App )
 
 Hybrid 앱의 경우 앱 내에서 WebView 를 사용하여 웹 컨텐츠를 서비스 하기도 합니다
 이와 같이 Webview 에 의해서 보여지는 웹 컨텐츠의 경우에는
@@ -113,7 +113,7 @@ Hybrid 앱의 경우 앱 내에서 WebView 를 사용하여 웹 컨텐츠를 서
 
 앱내에서 사용할 WebView 의 Delegate 함수에 아래와 같이 분석코드를 적용합니다
 
-- UIWebView를 사용할 경우 적용할 분석코드
+### 3.1 UIWebView를 사용할 경우 적용할 분석코드
 
 ```swift
 func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
@@ -124,11 +124,9 @@ func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navi
 func webViewDidFinishLoad(_ webView: UIWebView) {
 	DOT.setJavascriptInjectionIn(webView)
 }
-
-
 ```
 
-- WKWebView를 사용할 경우 적용할 분석코드
+### 3.2 WKWebView를 사용할 경우 적용할 분석코드
 
 ```swift
 var webLoaded : Bool!
@@ -145,9 +143,9 @@ func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 
 ```
 
-### 4. 유입경로 분석 ( optional )
+## 4. 유입경로 분석 ( optional )
 
-#### 4.1 앱 설치 경로 분석
+### 4.1 앱 설치 경로 분석
 
 앱이 설치된 경로를 분석하는 시점은, 앱이 설치후 처음 실행될때 설치 경로를 획득하게 됩니다
 이에 대한 처리는 기본적으로 위에서 설명된 **SDK 필수 적용 사항**이 적용된 상태에서는 자동으로 처리가 되기 때문에, 별도의 분석코드 적용이 필요하지 않습니다
@@ -167,7 +165,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-#### 4.2 외부 유입 경로 분석 ( Deeplink )
+### 4.2 외부 유입 경로 분석 ( Deeplink )
 
 앱이 설치된 이후 DeepLink를 통해서 앱이 실행되는 경로 분석이 필요한 경우 아래와 같이 **setDeepLink()** 함수를 사용하면 분석이 가능합니다
 
@@ -178,19 +176,19 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
 }
 ```
 
-#### 4.3 Facebook 분석
+### 4.3 Facebook 분석
 
 Facebook 앱에서 유입되는 설치수를 분석하기 위해서는 Facebook에서 제공하는 SDK가 분석 대상 앱에 설치가 선행되어야 합니다
 
-- FBSDK 다운로드 방법
+#### 4.3.1 FBSDK 다운로드 방법
 
-a. XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다
+##### 1) XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다
 
 ```bat
 pod 'FacebookSDK'
 ```
 
-b. Podfile 에 dependency 를 추가한 뒤에는 Terminal 프로그램을 실행하여 다음의 명령을 수행합니다
+##### 2) Podfile 에 dependency 를 추가한 뒤에는 Terminal 프로그램을 실행하여 다음의 명령을 수행합니다
 
 ```bat
 cmd> pod install
@@ -201,10 +199,10 @@ cmd> pod install
 
 [FBSDK iOS 다운로드 하기](https://developers.facebook.com/docs/ios/downloads)
 
-- FBSDK 설치 방법
+#### 4.3.2 FBSDK 설치 방법
 
-a. info.plist 파일을 **source로 보기** 로 오픈합니다
-b. 이름 속성 아래에 포함된 내용중 **&#91;APP\\\_ID&#93;** 와 **&#91;APP\\\_NAME&#93;** 부분을 Facebook Developer Site 에서 제공하는 값으로 치환후 info.plist 파일에 저장합니다
+##### a. info.plist 파일을 **source로 보기** 로 오픈합니다
+##### b. 이름 속성 아래에 포함된 내용중 **&#91;APP\\\_ID&#93;** 와 **&#91;APP\\\_NAME&#93;** 부분을 Facebook Developer Site 에서 제공하는 값으로 치환후 info.plist 파일에 저장합니다
 
 ```xml
 <key>CFBundleURLTypes</key>
@@ -222,7 +220,7 @@ b. 이름 속성 아래에 포함된 내용중 **&#91;APP\\\_ID&#93;** 와 **&#9
 <string>[APP_NAME]</string>
 ```
 
-- FBSDK 로부터 Install Referrer를 수신하고, SDK에 전달하는 방법
+#### 4.3.3. FBSDK 로부터 Install Referrer를 수신하고, SDK에 전달하는 방법
 
 사용자가 Facebook에 노출된 광고를 클릭하고 앱을 설치한 경우 설치된 앱에서는 FBSDK를 통해서 AppLinkData를 수신받을 수 있습니다
 아래의 코드에서 FBSDK로부터 AppLinkData를 수신 받고, 수신 받은 AppLinkData 를 SDK로 전달하는 방법을 확인할 수 있습니다
@@ -246,12 +244,12 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 Facebook SDK와 관련하여 보다 자세한 설치 방법은 아래의 링크에서 확인이 가능합니다
 [FBSDK iOS 적용방법 자세히 보기](https://developers.facebook.com/docs/ios/)
 
-#### 4.4 푸시 메시지 분석
+### 4.4 푸시 메시지 분석
 
 푸시 메시지와 관련되어 push token값을 수집하고,
 수신된 메시지를 클릭하여 앱이 실행된 오픈수 분석등을 적용하는 방법에 대해서 설명합니다
 
-- push token 분석 방법
+#### 4.4.1 push token 분석 방법
 
 push token은 푸시 발송 시스템에서 메시지 전송시 수신 대상이 되는 개개인 별로 Unique하게 발급되는 일종의 식별ID 값입니다.
 push token을 분석하기 위해서 AppDelegate 에 정의된 **didRegisterForRemoteNotificationsWithDeviceToken()** 함수에
@@ -267,7 +265,7 @@ func application(_ application: UIApplication,didRegisterForRemoteNotificationsW
 }
 ```
 
-- 수신된 푸시 메시지를 클릭하여 앱이 실행된 오픈수 분석 방법
+#### 4.4.2 수신된 푸시 메시지를 클릭하여 앱이 실행된 오픈수 분석 방법
 
 각 단말기에 수신된 푸시 메시지를 사용자가 클릭한 경우에 대해서 분석합니다
 푸시 메시지를 클릭하고, 실행되는 로직에서 아래의 분석 코드를 적용합니다
@@ -276,20 +274,21 @@ func application(_ application: UIApplication,didRegisterForRemoteNotificationsW
 DOT.setPushClick(userInfo)
 ```
 
-#### 4.5 이미지 & 비디오 푸시 기능 구현
+### 4.5 이미지 & 비디오 푸시 기능 구현
 
-##### 4.5.1 Notification Service Extension Target 추가
+#### 4.5.1 Notification Service Extension Target 추가
 
-- 이미지를 포함한 Push를 수신받기 위해 필요합니다.
-- File - New - Target 메뉴에서 Notification Service Extension 선택합니다.
+##### 1) 이미지를 포함한 Push를 수신받기 위해 필요합니다.
+
+##### 2) File - New - Target 메뉴에서 Notification Service Extension 선택합니다.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2020/01/NotiServExt-1024x739.png)
 
-- 아래와 같이 프로젝트가 생성됩니다.
+##### 3) 아래와 같이 프로젝트가 생성됩니다.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2020/01/notiServExtFolder.png)
 
-- didReceive 함수에 아래 소스 추가합니다.
+##### 4) didReceive 함수에 아래 소스 추가합니다.
 
 ```Swift
 if let bestAttemptContent = bestAttemptContent {
@@ -309,7 +308,7 @@ if let bestAttemptContent = bestAttemptContent {
 
 ```
 
-- makeImageStr 함수를 추가합니다.
+##### 5) makeImageStr 함수를 추가합니다.
 
 ```Swift
     func makeImage(_ URLString: String) -> String? {
@@ -335,9 +334,9 @@ if let bestAttemptContent = bestAttemptContent {
 
 ```
 
-- push 전송 시 payload에 mutable-content값을 1로 세팅, image-url이 포함되어 있어야 합니다.
+##### 6) push 전송 시 payload에 mutable-content값을 1로 세팅, image-url이 포함되어 있어야 합니다.
 
-- ex)
+##### ex)
 
 ```
 {  "aps" : {
@@ -354,18 +353,18 @@ if let bestAttemptContent = bestAttemptContent {
 
 ```
 
-4.5.2 Notification Content Extension Target 추가
+#### 4.5.2 Notification Content Extension Target 추가
 
-- 동영상을 포함한 Push를 확장했을 때 Push 화면영역 내에서 동영상 실행을 위해 필요합니다.
-- File - New - Target 메뉴에서 Notification Content Extension 선택합니다.
+##### 1) 동영상을 포함한 Push를 확장했을 때 Push 화면영역 내에서 동영상 실행을 위해 필요합니다.
+##### 2) File - New - Target 메뉴에서 Notification Content Extension 선택합니다.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2020/01/NotiContExt-1024x738.png)
 
-- 아래와 같이 프로젝트가 생성됩니다.
+##### 3) 아래와 같이 프로젝트가 생성됩니다.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2020/01/notiContExtFolder.png)
 
-- Podfile내 NotificationContentExtension Target에 아래와 같이 YouTubePlayer 라이브러리(동영상 실행을 위한 라이브러리)를 추가해 줍니다.
+##### 4) Podfile내 NotificationContentExtension Target에 아래와 같이 YouTubePlayer 라이브러리(동영상 실행을 위한 라이브러리)를 추가해 줍니다.
 
 ```
 
@@ -379,11 +378,11 @@ end
 
 ```
 
-- Notification Content Extension Target 생성시 추가된 MainInterface.storyboard 내 Notification View Controller의 적당한 영역에 YouTubePlayerView를 추가합니다.
+##### 5) Notification Content Extension Target 생성시 추가된 MainInterface.storyboard 내 Notification View Controller의 적당한 영역에 YouTubePlayerView를 추가합니다.
 
-- 위에 추가한 @IBOutlet weak var player: YouTubePlayerView!과 연결합니다.
+##### 6) 위에 추가한 @IBOutlet weak var player: YouTubePlayerView!과 연결합니다.
 
-- viewDidLoad 함수에 아래 소스를 추가합니다.
+##### 7) viewDidLoad 함수에 아래 소스를 추가합니다.
 
 ```
     player.playerVars = ["playsinline": "1"
@@ -395,7 +394,7 @@ end
         , "rel": 0] as YouTubePlayerView.YouTubePlayerParameters
 ```
 
-- didReceive 함수에 아래 소소를 추가합니다.
+##### 8) didReceive 함수에 아래 소소를 추가합니다.
 
 ```
 let content = notification.request.content
@@ -409,13 +408,13 @@ if let videoUrl = content.userInfo["video-url"] as? String {
 }
 ```
 
-- Notification Content Extension Target 생성시 추가된 info.plist 파일에 내용을 추가합니다. 아래와 같이 UNNotificationExtensionCategory키 값에 payload에서 category의 값으로 사용될 값을 저장합니다.
+##### 9) Notification Content Extension Target 생성시 추가된 info.plist 파일에 내용을 추가합니다. 아래와 같이 UNNotificationExtensionCategory키 값에 payload에서 category의 값으로 사용될 값을 저장합니다.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2020/01/notiContExtPlist.png)
 
-- push 전송 시 payload에 mutable-content값을 1로 세팅, category값을 위에서 지정한 값으로 세팅, image-url(동영상의 썸네일 이미지), video_url의 값이 포함되어 있어야 합니다.
+##### 10) push 전송 시 payload에 mutable-content값을 1로 세팅, category값을 위에서 지정한 값으로 세팅, image-url(동영상의 썸네일 이미지), video_url의 값이 포함되어 있어야 합니다.
 
-- ex)
+##### ex)
 
 ```
 {  "aps" : {
@@ -433,19 +432,19 @@ if let videoUrl = content.userInfo["video-url"] as? String {
 }
 ```
 
-#### 4.5 Universal Link 분석
+### 4.5 Universal Link 분석
 
-- Univarsal Link 사용을 위해 Associated Domains에 WiseTracker 서비스 도메인 등록(아래 이미지 참조)
+#### 4.5.1 Univarsal Link 사용을 위해 Associated Domains에 WiseTracker 서비스 도메인 등록(아래 이미지 참조)
   - applinks:cdn.wisetracker.co.kr
   - applinks:ads.wisetracker.co.kr
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2019/12/associatedDomains-1024x583.png)
 
-- 위 두 도메인의 서버에 apple-app-site-association에 적용할 앱의 번들 ID와 팀 ID를 당사에 전달
+#### 4.5.2 위 두 도메인의 서버에 apple-app-site-association에 적용할 앱의 번들 ID와 팀 ID를 당사에 전달
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2019/12/team-ID-%E1%84%92%E1%85%AA%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB-1024x605.png)
 
-- appDelegate 아래 함수 적용
+#### 4.5.3 appDelegate 아래 함수 적용
   : continueUserActivity 부분에 아래와 같이 적용이 되어야 유니버셜링크를 통한 광고분석이 가능합니다.
 
 ```Swift
@@ -457,15 +456,15 @@ if let videoUrl = content.userInfo["video-url"] as? String {
     }
 ```
 
-### 5. 고급 컨텐츠 분석 ( optional )
+## 5. 고급 컨텐츠 분석 ( optional )
 
 in-App 에서 발생하는 다양한 이벤트를 분석하기 위해서는 분석 대상 앱에서 해당 이벤트가 발생된 시점에,
 SDK에게 해당 정보를 전달해야 합니다
 이어지는 내용에서는 주요 이벤트들의 분석 방법에 대해서 자세하게 설명합니다
 
-#### 5.1 로그인 분석
+### 5.1 로그인 분석
 
-- 로그인 이벤트 분석
+#### 5.1.1 로그인 이벤트 분석
 
 분석 대상 앱에 로그인 기능이 있는 경우에, 로그인 이벤트에 대한 발생 여부를 분석할 수 있습니다
 로그인 처리 완료후, 로그인 완료 페이지에 아래와 같이 분석 코드를 적용합니다
@@ -485,9 +484,7 @@ override func viewDidAppear(_ animated: Bool) {
 이 경우에는 로그인을 처리하는 Backend 로직을 수행후, 아래와 같이 로그인 완료 이벤트를 전송할 수 있습니다
 
 ```swift
-
 ... 로그인 처리 로직 수행 ...
-
 	DOT.onStartPage()
 	let dic = NSMutableDictionary()
 	dic["pi"] = "LIR"
@@ -495,7 +492,7 @@ override func viewDidAppear(_ animated: Bool) {
 
 ```
 
-- 회원 분석
+#### 5.1.2 회원 분석
 
 로그인 완료 이벤트 분석시, 현재 로그인한 사용자의 다양한 정보를 분석할 수 있습니다
 로그인 완료에 대한 처리 완료후, 아래와 같이 분석 코드를 적용합니다
@@ -530,7 +527,7 @@ override func viewDidAppear(_ animated: Bool) {
 
 분석 가능 Page Key 해당 목록에 들어있는 key 값에 한해서 분석이 가능합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
-(1) Page Identity 분석
+#### 5.2.1 Page Identity 분석
 
 앱에 존재하는 각 페이지를 의미하는 Identity를 사용자가 정의하고, 각 화면들에 정의된 Identity를 적용하면,
 앱에서 가장 사용 빈도가 높은 화면별 랭킹을 알 수 있습니다
@@ -546,7 +543,7 @@ override func viewDidAppear(_ animated: Bool) {
 }
 ```
 
-(2) 상품 페이지 분석
+#### 5.2.2 상품 페이지 분석
 
 e-commerce 앱의 경우 상품 상세 페이지에 분석코드를 적용하여, 상품별 조회수를 분석합니다
 상품 상세 페이지에 아래와 같이 분석 코드를 적용하세요
@@ -564,7 +561,7 @@ override func viewDidAppear(_ animated: Bool) {
 }
 ```
 
-(3) Contents Path 분석
+#### 5.2.3 Contents Path 분석
 
 앱에 존재하는 각 페이지에 Hierarchical 한 Contents Path값을 적용하면,
 각 컨텐츠의 사용 비율을 카테고리별로 그룹화 하여 분석이 가능합니다
@@ -581,7 +578,7 @@ override func viewDidAppear(_ animated: Bool) {
 }
 ```
 
-(4) Multi Variables 분석( 사용자 정의 변수 )
+#### 5.2.4 Multi Variables 분석( 사용자 정의 변수 )
 
 Multi Variables 분석 항목은 사용자가 그 항목에 전달할 값을 정의하여 사용이 가능합니다.
 비즈니스에서 필요한 분석 항목을 SDK API 함수로 전달하고, 그렇게 전달된 값을 기준으로 페이지뷰수, 방문수등을 측정하고 보여줍니다
@@ -601,13 +598,13 @@ override func viewDidAppear(_ animated: Bool) {
 }
 ```
 
-(5) 내부 검색어 분석
+#### 5.2.5 내부 검색어 분석
 
 앱에 검색기능이 있는 경우, 사용자가 입력한 검색어와, 검색한 카테고리, 검색 결과수등을 분석하면,
 검색 기능의 활용성을 측정할 수 있습니다
 검색 결과가 보여지는 화면에 다음과 같이 분석 코드를 적용합니다
 
-````swift
+```swift
 override func viewDidAppear(_ animated: Bool) {
 	super.viewDidAppear(animated)
 	// 사용자가 통합 검색 카테고리에서 청바지 검색어로 1200개의 검색 결과를 보았을떄 적용 예시
@@ -618,18 +615,17 @@ override func viewDidAppear(_ animated: Bool) {
     screen["sresult"] = 1200
     DOT.logScreen(screen)
 }
-```\`
+```
 
-#### 5.3 Click 분석
+### 5.3 Click 분석
 
 분석 가능 Click Key 해당 목록에 들어있는 key 값에 한해서 분석이 가능합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
-(1) 검색 결과 클릭 분석
+#### 5.3.1 검색 결과 클릭 분석
 
 검색 결과 페이지에서 보여지는 많은 검색 결과 항목별 클릭수를 분석합니다.
 이 분석 결과를 통해서 검색 결과의 상단에 노출되는 항목들이 적절한지 가늠할 수 있습니다.
 검색 결과 페이지에서 특정 항목이 클릭되면, 해당 화면으로 이동하기 이전에 아래와 같이 분석 코드를 적용하세요.
-
 
 ```swift
  	  let click = NSMutableDictionary()
@@ -637,9 +633,9 @@ override func viewDidAppear(_ animated: Bool) {
     click["ckData"] =  "클릭된 검색 결과 항목 ID"
     DOT.logClick(click)
 )
-````
+```
 
-(2) 장바구니 담긴 상품 분석
+#### 5.3.2 장바구니 담긴 상품 분석
 
 e-commerce 관련된 비즈니스의 경우 장바구니에 담긴 상품을 분석할 수 있습니다.
 장바구니 담기 이벤트 발생시 아래와 같은 코드를 적용하세요.
@@ -653,7 +649,7 @@ e-commerce 관련된 비즈니스의 경우 장바구니에 담긴 상품을 분
     DOT.logClick(click)
 ```
 
-(3) 클릭 이벤트 분석
+#### 5.3.3 클릭 이벤트 분석
 
 앱에 존재하는 다양한 클릭 요소 ( 배너, 버튼 등 ) 에 대해서, 클릭수를 분석합니다
 각 요소가 클릭되는 시점에 아래와 클릭된 요소의 목적지 화면으로 이동하기 이전에 아래와 같은 분석 코드를 적용하세요
@@ -669,7 +665,7 @@ e-commerce 관련된 비즈니스의 경우 장바구니에 담긴 상품을 분
 앞에서 설명한 **Contents Path 분석** 과 같이, Hierarchical 한 Path값을 전달하여 추후 데이터 조회시 Categorizing 하게 보기도 가능합니다
 Hierarchical 한 Path 값을 사용하고자 할때 값에 대한 제약사항은 **Contents Path 분석** 과 동일합니다
 
-(4) 클릭 이벤트 고급 분석( Multi Variables )
+#### 5.3.4 클릭 이벤트 고급 분석( Multi Variables )
 
 클릭 이벤트 분석시 앞에서 설명한 **Multi Variables 분석** 을 같이 적용하면, **Multi Variables 분석 항목별 클릭수** 를 측정할 수 있습니다
 클릭 이벤트가 발생된 시점에 다음과 같이 Multi Variables 값을 같이 SDK에 전달하도록 분석코드를 적용하세요
@@ -687,7 +683,7 @@ Hierarchical 한 Path 값을 사용하고자 할때 값에 대한 제약사항�
     DOT.logClick(click)
 ```
 
-#### 5.4 Conversion 분석
+### 5.4 Conversion 분석
 
 앱내에 존재하는 Conversion중 가장 대표적인게 **구매 전환** 을 생각할 수 있습니다.
 하지만, 앱내에는 앱이 제공하는 서비스에 따라서 매우 다양한 Conversion이 존재할 수 있습니다.
@@ -698,7 +694,7 @@ SDK는 총 80개의 Conversion 을 사용자가 정의하고 분석 코드를 �
 
 분석 가능 Conversion Key 해당 목록에 들어있는 key 값에 한해서 분석이 가능합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
-(1) Conversion 분석
+#### 5.4.1 Conversion 분석
 
 ```swift
 // Micro Conversion #1 번의 사용 예시
@@ -707,7 +703,7 @@ SDK는 총 80개의 Conversion 을 사용자가 정의하고 분석 코드를 �
     DOT.logEvent(event)
 ```
 
-(2) Conversion 고급 분석( 상품 )
+#### 5.4.2 Conversion 고급 분석( 상품 )
 
 Conversion은 단순하게 발생 횟수를 측정할 수도 있으나,
 상품과 연계하여 상품별로 정의한 Conversion의 발생 횟수 측정도 가능합니다
@@ -725,7 +721,7 @@ Conversion은 단순하게 발생 횟수를 측정할 수도 있으나,
 
 ```
 
-(3) Conversion 고급 분석( Multi Variables )
+#### 5.4.3 Conversion 고급 분석( Multi Variables )
 
 Multi Variables 항목과 연계하여 Conversion의 발생 횟수 측정도 가능합니다
 이벤트가 발생한 시점에 아래와 같이 Conversion Data + Multi Variables Data 를 SDK로 전달하세요
@@ -741,14 +737,14 @@ Multi Variables 항목과 연계하여 Conversion의 발생 횟수 측정도 가
     DOT.logEvent(event)
 ```
 
-#### 5.5 Purchase 분석
+### 5.5 Purchase 분석
 
 앱내에서 발생하는 구매 이벤트를 분석합니다.
 구매 완료 페이지에서 아래와 같이 구매와 관련된 정보를 SDK에 전달하세요.
 
 분석 가능 Purchase Key 해당 목록에 들어있는 key 값에 한해서 분석이 가능합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
-(1) 단일 상품 구매 분석
+#### 5.5.1 단일 상품 구매 분석
 
 ```swift
     let purchase = NSMutableDictionary()
@@ -768,7 +764,7 @@ Multi Variables 항목과 연계하여 Conversion의 발생 횟수 측정도 가
 )
 ```
 
-(2) 복수 상품 구매 분석
+#### 5.5.2 복수 상품 구매 분석
 
 ```swift
         let purchase = NSMutableDictionary()
@@ -793,7 +789,7 @@ Multi Variables 항목과 연계하여 Conversion의 발생 횟수 측정도 가
         DOT.logPurchase(purchase)
 ```
 
-(2) 구매 고급 분석( Multi Variables )
+#### 5.5.3 구매 고급 분석( Multi Variables )
 
 Multi Variables 항목과 연계하여 Purchase 분석도 가능합니다
 이벤트가 발생한 시점에 아래와 같이 Purchase Data + Multi Variables Data 를 SDK로 전달하세요

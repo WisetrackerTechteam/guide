@@ -138,7 +138,7 @@ DOT.setUser(
 );
 ```
 
-**\<User Class>**
+<User Class>
 
 | Class 이름 |      Method 이름      |                   파라미터                   |
 | :--------: | :-------------------: | :------------------------------------------: |
@@ -321,7 +321,7 @@ dictionary.Add("mvt4", "conversion mvt 4");
 dictionary.Add("mvt5", "conversion mvt 5");
 DOT.logEvent(dictionary);
 ```
-
+<!-- 
 #### <a id="3.5"></a> 3.5 Purchase 분석
 
 앱내에서 발생하는 구매 이벤트를 분석합니다. 구매 완료 페이지에서 아래와 같이 구매와 관련된 정보를 SDK에 전달하세요.
@@ -331,7 +331,7 @@ DOT.logEvent(dictionary);
 
 (1) Purchase 제품 분석
 
-```c#
+```
 Dictionary<string, object> dictionary = new Dictionary<string, object>();
 Dictionary<string, object> productDictionary = new Dictionary<string, object>();
 productDictionary.Add("pg1", "상품카테고리(대)");
@@ -346,7 +346,7 @@ DOT.logPurchase(dictionary);
 
 (2) Purchase Multi Variables 분석 : Multi Variables 항목과 연계하여 Purchase 분석도 가능합니다. 이벤트가 발생한 시점에 아래와 같이 Purchase Data + Multi Variables Data 를 SDK로 전달하세요.
 
-```c#
+```
 Dictionary<string, object> dictionary = new Dictionary<string, object>();
 dictionary.Add("mvt1", "purchase mvt 1");
 dictionary.Add("mvt2", "purchase mvt 2");
@@ -354,4 +354,4 @@ dictionary.Add("mvt3", "purchase mvt 3");
 dictionary.Add("mvt4", "purchase mvt 4");
 dictionary.Add("mvt5", "purchase mvt 5");
 DOT.logPurchase(dictionary);
-```
+``` -->
