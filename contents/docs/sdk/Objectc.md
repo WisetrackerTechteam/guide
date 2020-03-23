@@ -2,7 +2,7 @@
 
 ### 1.1 SDK 다운로드
 
-- XCode CocoaPod 환경에서 SDK 다운로드 방법
+#### XCode CocoaPod 환경에서 SDK 다운로드 방법
 
 XCode 프로젝트 파일중 Podfile 파일에 다음과 같이 SDK를 추가합니다
 

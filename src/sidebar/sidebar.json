@@ -50,12 +50,16 @@
         "link": "/docs/SDK/Javascript"
       },
       {
-        "name": "Unity",
-        "link": "/docs/SDK/Unity"
-      },
-      {
         "name": "Cordova",
         "link": "/docs/SDK/Cordova"
+      },
+      {
+        "name": "React Native",
+        "link": "/docs/SDK/Reactnative"
+      },
+      {
+        "name": "Unity",
+        "link": "/docs/SDK/Unity"
       }
     ]
   }
