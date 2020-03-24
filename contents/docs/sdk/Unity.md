@@ -3,28 +3,32 @@
 ## 1. 플러그인 설치 (AOS/IOS 공통 설정)
 
 ### 1.1 유니티 패키지 다운로드
-유니티 플러그인 패키지(RW.unitypackage)를 다운로드 해주세요.
 
+유니티 플러그인 패키지(RW.unitypackage)를 다운로드 해주세요.
 [패키지 다운로드](https://github.com/WisetrackerTechteam/RW-unity-package)
 
+<<<<<<< HEAD
 ### 1.2 패키지 임포트
 -> Unity Tools에서 Assets > Import Package > Custom Package 메뉴 선택
    다운로드 받은 **RW.unitypackage** 파일을 선택해 주세요
+=======
+### 1.2 유니티 패키지 임포트
+
+Unity Tools에서 Assets -> Import Package -> Custom Package 메뉴 선택 -> 다운로드 받은 **RW.unitypackage** 파일을 선택
+>>>>>>> ba0f9caf9eeac7bbf259949388675985ce076d3e
 
 ## 2. Android 설정
 
-### 2.1 strings.xml 설정
--> /Assets/Plugins/Android/res/values/strings.xml
+### 2.1 AuthorizationKey 설정
 
-#### 2.1.1 dotAuthorizationKey 설정
--> 발급받은 App Analytics Key 정보 추가
+strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
 
 ```xml
-<!-- 예시는 샘플 코드이며, 관리자 페이지에서 직접 발급 받은 값을 적용해 주세요  -->
+<!-- /Assets/Plugins/Android/res/values/strings.xml -->
 <string-array name="dotAuthorizationKey">
-    <item name="usdMode">1</item> // 1. DOT.DOX 2. DOT
-    <item name="domain">http://collector.naver.wisetracker.co.kr</item> // DOT END POINT
-    <item name="domain_x">http://collector.naver.wisetracker.co.kr</item> // DOX END POINT
+    <item name="usdMode">1</item>                                           // (1) DOT/DOX (2) DOT
+    <item name="domain">http://collector.naver.wisetracker.co.kr</item>     // DOT END POINT
+    <item name="domain_x">http://collector.naver.wisetracker.co.kr</item>   // DOX END POINT
     <item name="serviceNumber">103</item>
     <item name="expireDate">14</item>
     <item name="isDebug">false</item>
@@ -34,23 +38,12 @@
 </string-array>
 ```
 
-#### 2.1.2 customKeyList 설정 (필요시 설정)
--> **'#'** 구분자 기준으로 **왼쪽**은 기본 사용되고 있는 키 값 **오른쪽**은 변경하고자 하는 키 값을 적용해주세요.
+### 2.2 딥링크 설정
 
-```xml
-<!-- 예시는 디폴트 advtId 키 값을 advt_id 값으로 변경하는 설정입니다. -->
-<string-array name="customKeyList">
-  <item name="custom_key_value1">advtId#advt_id</item>
-</string-array>
-```
-
-### 2.2 AndroidManifest.xml 설정 
--> /Assets/Plugins/Android/AndroidManifest.xml
-
-#### 2.2.1 딥링크 설정
--> 딥링크로 진입할 **android:scheme="YOUR_SCHEME"** 스키마와 **android:host="YOUR_HOST"** 호스트를 설정해 주세요.
+AndroidManifest.xml 파일에 딥링크로 진입할 **android:scheme="YOUR_SCHEME"** 스키마와 **android:host="YOUR_HOST"** 호스트를 설정해 주세요.
               
 ```xml
+<!-- /Assets/Plugins/Android/AndroidManifest.xml --> 
 <!--  예시는 wisetracker://wisetracker.co.kr 링크로 진입시 딥링크 분석이 가능 -->
 <activity android:name="kr.co.wisetracker.UnityDeepLink" 
           android:launchMode="singleTop" >
@@ -122,16 +115,17 @@ http통신을 허용하기 위해 NSAppTransportSecurity 를 아래와 같이 �
 	<true/>
 </dict>
 ```
-## 4. 초기화
-유니티 앱 실행시 최초 실행되는 MonoBehavior 상속받아 구현된 MainScene 클래스의 Awake() 함수에 다음과 같은 초기화 코드를 삽입해 주세요.
 
-### 4.1 초기화 호출
+## 4. 기본 설정
+
+### 4.1 초기화
 
 ```c#
 void Awake() 
 {
     #if UNITY_ANDROID && !UNITY_EDITOR
         // for android
+        DOT.initialization();
     #elif UNITY_IOS && !UNITY_EDITOR 
         // for ios
         DOT.initialization();
@@ -170,13 +164,14 @@ void OnApplicationPause(bool pauseStatus)
 }
 ```
 
-## 5. 고급 컨텐츠 분석 (optional)
+## 5. 고급 컨텐츠 분석
 
-in-App 에서 발생하는 다양한 이벤트를 분석하기 위해서는 분석 대상 앱에서 해당 이벤트가 발생된 시점에, SDK에게 해당 정보를 전달해야 합니다.
+in-App 에서 발생하는 다양한 이벤트를 분석하기 위해서는 분석 대상 앱에서 해당 이벤트가 발생되는 시점에 SDK로 해당 정보를 전달해야 합니다.
 이어지는 내용에서는 주요 이벤트들의 분석 방법에 대해서 자세하게 설명합니다.
 
 ### 5.1 회원 분석
-사용자의 다양한 정보를 분석할 수 있습니다
+
+사용자 정보 분석을 합니다.
 
 ```java 
 DOT.setUser(
@@ -188,28 +183,28 @@ DOT.setUser(
 );
 ```
 
-회원 분석과 관련되어 제공되는 분석 항목은 다음과 같습니다
+**User.Class**
 
-| Class 이름 | Method 이름 | 파라미터 |
-| :------: | :------: | :------: |
-| User | setMember(isMember) |  회원여부를 나타내는 Y,N값 전달 |
-| User | setMemberGrade(grade) | 회원등급을 나타내는 코드값 전달 |
-| User | setMemberId(userId) | 회원의 로그인 아이디를 전달 |
-| User | setGender(gender) | 회원 성별을 나타내는 M,F,U 중 한가지 값 전달 |
-| User | setAge(age) | 회원 연령을 나타내는 코드값 전달 |
-| User | setAttr1(attr) | 회원 속성#1 의미하는 코드값 전달 |
-| User | setAttr2(attr) | 회원 속성#2 의미하는 코드값 전달 |
-| User | setAttr3(attr) | 회원 속성#3 의미하는 코드값 전달 |
-| User | setAttr4(attr) | 회원 속성#4 의미하는 코드값 전달 |
-| User | setAttr5(attr) | 회원 속성#5 의미하는 코드값 전달 |
+| Class 이름  |      Method 이름       |                   파라미터                   |
+| --------   | -------------------   | ------------------------------------------ |
+|    User    |  setMember(isMember)  |        회원여부를 나타내는 Y,N값 전달        |
+|    User    | setMemberGrade(grade) |       회원등급을 나타내는 코드값 전달        |
+|    User    |  setMemberId(userId)  |         회원의 로그인 아이디를 전달          |
+|    User    |   setGender(gender)   | 회원 성별을 나타내는 M,F,U 중 한가지 값 전달 |
+|    User    |      setAge(age)      |       회원 연령을 나타내는 코드값 전달       |
+|    User    |    setAttr1(attr)     |       회원 속성#1 의미하는 코드값 전달       |
+|    User    |    setAttr2(attr)     |       회원 속성#2 의미하는 코드값 전달       |
+|    User    |    setAttr3(attr)     |       회원 속성#3 의미하는 코드값 전달       |
+|    User    |    setAttr4(attr)     |       회원 속성#4 의미하는 코드값 전달       |
+|    User    |    setAttr5(attr)     |       회원 속성#5 의미하는 코드값 전달       |
 
 ### 5.2 Page 분석
-[분석 가능 Page Key](./page.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다.
-분석을 희망하는 key 값을 확인후 적용해 주세요.
+
+[분석 가능 Page Key](./key/page.md) **해당 목록에 들어있는 key 값에 한해 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
 ### 5.2.1 Page Identiy 분석 
 
- 앱에 존재하는 각 페이지가 의미하는 Identity를 각 화면들에 적용하면, 앱에서 가장 사용 빈도가 높은 화면별 랭킹을 알 수 있습니다.
+앱에 존재하는 각 페이지가 의미하는 Identity를 각 화면들에 적용하면, 앱에서 가장 사용 빈도가 높은 화면별 랭킹을 알 수 있습니다.
 
 ```c#
 DOT.onStartPage();
@@ -220,11 +215,12 @@ DOT.logScreen(page);
 
 ### 5.2.2 상품 페이지 분석 
 
- e-commerce 앱의 경우 상품 상세 페이지에 분석코드를 적용하여, 상품별 조회수를 분석합니다.
+e-commerce 앱의 경우 상품 상세 페이지에 분석코드를 적용하여, 상품별 조회수를 분석합니다.
 
 ```c#
 DOT.onStartPage();
 Dictionary<string, object> page = new Dictionary<string, object>();
+page.Add("pi", "PRODUCT_PAGE");
 Dictionary<string, object> product = new Dictionary<string, object>();
 product.Add("orderNo", "ORD001");
 product.Add("currency", "KRW");
@@ -242,7 +238,7 @@ DOT.logScreen(page);
 
 ### 5.2.3 Contents Path 분석 
 
-앱의 각 페이지에 Hierarchical 한 Contents Path값을 적용하면, 각 컨텐츠의 사용 비율을 카테고리별로 그룹화 하여 분석이 가능합니다.
+앱의 각 페이지에 Hierarchical 한 Contents Path를 적용하면, 각 컨텐츠의 사용 비율을 카테고리별로 그룹화 하여 분석이 가능합니다.
 
 ```c#
 DOT.onStartPage();
@@ -253,10 +249,9 @@ page.Add("cp", "^path^path");
 DOT.logScreen(page); 
 ```
 
-### 5.2.4 Multi Variables 분석 (사용자 정의 변수)
+### 5.2.4 사용자 정의 분석
 
- Multi Variables 분석 항목은 사용자가 그 항목에 전달할 값을 정의하여 사용이 가능합니다. 
-비즈니스에서 필요한 분석 항목을 SDK API로 전달하고, 그렇게 전달된 값을 기준으로 페이지뷰수, 방문수 등을 측정하고 보여줍니다. 
+사용자 정의 분석 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
 
 ```c#
 DOT.onStartPage();
@@ -271,7 +266,7 @@ DOT.logScreen(page);
 
 ### 5.2.5 내부 검색어 분석 
 
- 앱에 검색기능이 있는 경우, 사용자가 입력한 검색어와, 검색한 카테고리, 검색 결과수등을 분석하면, 검색 기능의 활용성을 측정할 수 있습니다. 
+ 앱에 검색기능이 있는 경우 사용자가 입력한 검색어와, 검색한 카테고리, 검색 결과수등을 분석하면 검색 기능의 활용성을 측정할 수 있습니다.
 검색 결과가 보여지는 화면에 분석 코드를 적용합니다.
 
 ```c#
@@ -285,13 +280,12 @@ DOT.logScreen(page);
 ```
 
 ### 5.3 Click 분석
-[분석 가능 Click Key](./click.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다.
-분석을 희망하는 key 값을 확인후 적용해 주세요.
+[분석 가능 Click Key](./key/click.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
 ### 5.3.1 검색 결과 클릭 분석 
 
- 검색 결과 페이지에서 보여지는 많은 검색 결과 항목별 클릭수를 분석합니다.
-이 분석 결과를 통해서 검색 결과의 상단에 노출되는 항목들이 적절한지 가늠할 수 있습니다. 
+검색 결과 페이지에서 보여지는 많은 검색 결과 항목별 클릭수를 분석합니다.
+이 분석 결과를 통해서 검색 결과의 상단에 노출되는 항목들이 적절한지 가늠할 수 있습니다.
 검색 결과 페이지에서 특정 항목이 클릭되면, 해당 화면으로 이동하기 이전에 아래와 같이 분석 코드를 적용하세요.
 
 ```c#
@@ -317,8 +311,7 @@ DOT.logClick(click);
 
 ### 5.3.3 클릭 이벤트 분석 
 
-앱에 존재하는 다양한 클릭 요소 (배너, 버튼 등)에 대해서, 클릭수를 분석합니다. 
-각 요소가 클릭되는 시점에 아래와 클릭된 요소의 목적지 화면으로 이동하기 이전에 아래와 같은 분석 코드를 적용하세요.
+앱에 존재하는 다양한 클릭 요소(배너, 버튼 등)에 대해서 클릭수를 분석합니다. 각 요소가 클릭되는 시점에 아래와 같은 분석 코드를 적용하세요.
 
 ```c#
 Dictionary<string, object> click = new Dictionary<string, object>();
@@ -326,13 +319,11 @@ click.Add("ckTp", "CKC");
 DOT.logClick(click);
 ```
 
-클릭된 요소의 ID값으로 단일 문자열로된 값을 전달하기도 하지만,
-앞에서 설명한 **Contents Path 분석** 과 같이, Hierarchical 한 Path값을 전달하여 추후 데이터 조회시 Categorizing 하게 보기도 가능합니다
-Hierarchical 한 Path 값을 사용하고자 할때 값에 대한 제약사항은 **Contents Path 분석** 과 동일합니다
+**클릭된 요소의 ID값으로 단일 문자열로된 값을 전달하기도 하지만, 앞에서 설명한 Contents Path 분석과 같이 Hierarchical 한 Path값을 전달하여 추후 데이터 조회시 Categorizing 하게 보기도 가능합니다. Hierarchical 한 Path 값을 사용하고자 할때 값에 대한 제약사항은 Contents Path 분석과 동일합니다.**
 
-### 5.3.4 클릭 이벤트 고급 분석 (Multi Variables) 
+### 5.3.4 사용자 정의 분석
 
- 클릭 이벤트 분석시 앞에서 설명한 Multi Variables 분석 을 같이 적용하면, Multi Variables 분석 항목별 클릭수 를 측정할 수 있습니다. 클릭 이벤트가 발생된 시점에 다음과 같이 Multi Variables 값을 같이 SDK에 전달하도록 분석코드를 적용하세요.
+사용자 정의 분석 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
 
 ```c#
 // 클릭 이벤트 분석시 Multi Variables 분석값을 같이 전송하는 예시
@@ -346,27 +337,25 @@ DOT.logClick(click);
 ```
 
 ### 5.4 Conversion 분석
-가장 대표적으로 구매 전환 을 생각할 수 있습니다. 하지만, 앱내에는 앱이 제공하는 서비스에 따라서 매우 다양한 Conversion이 존재할 수 있습니다. 
-또한, 이미 정의된 Conversion 일지라도, 서비스의 변화, 시대의 변화애 따라서 새로 정의되어야 하기도 하고, 사용하지 않아서 폐기되기도 합니다.
-SDK는 총 80개의 Conversion을 사용자가 정의하고, 분석 코드를 적용함으로써 앱으로 인하여 발생하는 Conversion 측정이 가능합니다. 
+
+가장 대표적으로 구매 전환을 생각할 수 있지만, 앱내에는 앱이 제공하는 서비스에 따라서 매우 다양한 Conversion이 존재할 수 있습니다.
+또한, 이미 정의된 Conversion 일지라도, 서비스의 변화, 시대의 변화애 따라서 새로 정의되어야 하기도 하며, 사용하지 않아서 폐기되기도 합니다.
+SDK는 총 80개의 Conversion을 사용자가 정의하고, 분석 코드를 적용함으로써 앱으로 인하여 발생하는 Conversion 측정이 가능합니다.
 이는, **구매 전환과는 독립적으로 분석되며, 사용자는 언제든지 분석 코드의 적용 기준을 새로 정의할 수** 있습니다.
 
-[분석 가능 Conversion Key](./goal.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다.
-분석을 희망하는 key 값을 확인후 적용해 주세요.
-
-### 5.4.1 Conversion 분석
+[분석 가능 Conversion Key](./key/goal.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
 ```c#
-// Micro Conversion #1 번의 사용 예시
+// Conversion 1번의 사용 예시
 Dictionary<string, object> conversion = new Dictionary<string, object>();
 conversion.Add("g1", "goal 1");
 DOT.logEvent(conversion);
 ```
 
-### 5.4.2 Conversion 상품 분석 
+### 5.4.1 Conversion 상품 분석 
 
- Conversion은 단순하게 발생 횟수를 측정할 수도 있으나, 상품과 연계하여 상품별로 정의한 Conversion의 발생 횟수 측정도 가능합니다. 이벤트가 발생한 시점에 아래와 같이 Conversion Data + Product Data를 SDK로 전달하세요.
- 
+ 단순하게 Conversion 발생 횟수를 측정할 수도 있으나, 상품과 연계하여 상품별로 정의한 Conversion 발생 횟수 측정이 가능합니다. 
+
 ```c#
 Dictionary<string, object> conversion = new Dictionary<string, object>();
 Dictionary<string, object> product = new Dictionary<string, object>();
@@ -377,9 +366,9 @@ conversion.Add("product", product);
 DOT.logEvent(conversion);
 ```
 
-### 5.4.3 Conversion Multi Variables 분석 
+### 5.4.2 사용자 정의 분석
 
- Multi Variables 항목과 연계하여 Conversion의 발생 횟수 측정도 가능합니다. 이벤트가 발생한 시점에 아래와 같이 Conversion Data + Multi Variables Data를 SDK로 전달하세요.
+사용자 정의 분석 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
 
 ```c#
 Dictionary<string, object> conversion = new Dictionary<string, object>();
@@ -392,10 +381,9 @@ DOT.logEvent(conversion);
 ```
 
 ### 5.5 Purchase 분석
-앱내에서 발생하는 구매 이벤트를 분석합니다. 구매 완료 페이지에서 아래와 같이 구매와 관련된 정보를 SDK에 전달하세요.
 
-[분석 가능 Purchase Key](./purchase.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다.
-분석을 희망하는 key 값을 확인후 적용해 주세요.
+[분석 가능 Purchase Key](./key/purchase.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다.분석을 희망하는 key 값을 확인후 적용해 주세요.
+앱내에서 발생하는 구매 이벤트를 분석합니다. 구매 완료 페이지에서 아래와 같이 구매와 관련된 정보를 SDK에 전달해 주세요.
 
 #### 5.5.1 Purchase 제품 분석
 
@@ -412,9 +400,9 @@ purchase.Add("products", productList);
 DOT.logPurchase(purchase);
 ```
 
-#### 5.5.2 Purchase Multi Variables 분석 
+#### 5.5.2 Purchase 사용자 정의 분석
 
-Multi Variables 항목과 연계하여 Purchase 분석도 가능합니다. 이벤트가 발생한 시점에 아래와 같이 Purchase Data + Multi Variables Data 를 SDK로 전달하세요.
+사용자 정의 분석 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
 
 ```c#
 Dictionary<string, object> purchase = new Dictionary<string, object>();
@@ -424,4 +412,193 @@ purchase.Add("mvt3", "purchase mvt 3");
 purchase.Add("mvt4", "purchase mvt 4");
 purchase.Add("mvt5", "purchase mvt 5");
 DOT.logPurchase(purchase);
+```
+
+## 6. 확장 분석 (DOX)
+
+### 6.1 기본 설정
+
+'#' 구분자 기준으로 왼쪽은 기본 사용되고 있는 키 값 오른쪽은 변경하고자 하는 키 값을 적용해주세요.
+**미설정시 기본 설정된 키 값으로 자동 적용됩니다.**
+
+```xml
+<!-- 예시는 기본 Session에 포함된 advtId 키 값을 advt_id 값으로 변경하는 설정 -->
+<string-array name="customKeyList">
+  <item name="custom_key_value1">advtId#advt_id</item>
+</string-array>
+```
+
+### 6.2 고급 컨텐츠 분석
+
+#### 6.2.1 GroupIdentify 분석
+
+GroupIdentify는 Group 기준의 데이터 타입이 필요한 경우 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+
+**XIdentify.class**
+
+| Class 이름 | Method 이름         | 파라미터 |
+| --------   | -------------------   | ------------------------------------------ |
+|            | key                 | group 을 식별하기 위해 사용되는 식별 코드를 전달 |
+|            | value               | 전달된 group 식별 코드에 대한 값을 전달 |
+| XIdentify  | set(key, value)     | key 값으로 전송된 value 데이터에 대하여 서버측 처리 방법을 INSERT |
+| XIdentify  | setOnce(key, value) | key 값으로 전송된 value 데이터에 대하여 서버측 처리 방법을 ONLY INSERT 로 지정. 이 의미는 값이 존재하지 않을 경우에만 값을 설정하고 값이 이미 설정된 경우에는 전달된 value 값은 무시 |
+| XIdentify  | unset(value)        | 전송된 key값으로 서버측에 존재하는 데이터를 DELETE 하도록 지정 |
+| XIdentify  | add(key, increment) | key값으로 전송된 increment 데이터를 서버측에 존재하는 key값의 origin 데이터에 ADD 처리 하도록 지정. 필요한 경우 음수를 전송하여 MINUS 처리 효과를 기대 |
+| XIdentify  | append(key, value)  | key값으로 전송된 value 데이터를 서버측에 존재하는 key값의 orgin 데이터와 함께 JOIN(APPEND) 처리 하도록 지정. 만약 서버측 데이터가 현재 Array 타입이 아닌 경우에는, origin 데이터를 Array 타입을 변경 후, 전달되어진 value 데이터를 APPEND 처리 |
+| XIdentify  | prepend(key, value) | key값으로 전송된 value 데이터를 서버측에 존재하는 key값의 origin 데이터에 JOIN(INSERT) 처리 하도록 지정. 만약 서버측 데이터가 현재 Array 타입이 아닌 경우에는, origin 데이터를 Array 타입을 변경 후, 전달되어진 value 데이터를 INSERT 처리 |
+
+```java
+// XIdentify에 1개 이상의 항목이 설정 되어야 합니다.
+DOX.groupIdentify("company", "gsshop",
+    new XIdentify.Builder()
+        .setOnce("ID", "MRCM")
+        .set("action", "loginSuccess")
+        .add("visitCount", 1)
+        .build());
+```
+
+#### 6.2.2 UserIdentify 분석
+
+UserIdentify()는 User 기준의 데이터 타입이 필요한 경우 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+
+**XIdentify.class**
+
+| Class 이름 | Method 이름         | 파라미터 |
+| --------   | -------------------   | ------------------------------------------ |
+|            | key                 | group 을 식별하기 위해 사용되는 식별 코드를 전달 |
+|            | value               | 전달된 group 식별 코드에 대한 값을 전달 |
+| XIdentify  | set(key, value)     | key 값으로 전송된 value 데이터에 대하여 서버측 처리 방법을 INSERT |
+| XIdentify  | setOnce(key, value) | key 값으로 전송된 value 데이터에 대하여 서버측 처리 방법을 ONLY INSERT 로 지정. 이 의미는 값이 존재하지 않을 경우에만 값을 설정하고 값이 이미 설정된 경우에는 전달된 value 값은 무시 |
+| XIdentify  | unset(value)        | 전송된 key값으로 서버측에 존재하는 데이터를 DELETE 하도록 지정 |
+| XIdentify  | add(key, increment) | key값으로 전송된 increment 데이터를 서버측에 존재하는 key값의 origin 데이터에 ADD 처리 하도록 지정. 필요한 경우 음수를 전송하여 MINUS 처리 효과를 기대 |
+| XIdentify  | append(key, value)  | key값으로 전송된 value 데이터를 서버측에 존재하는 key값의 orgin 데이터와 함께 JOIN(APPEND) 처리 하도록 지정. 만약 서버측 데이터가 현재 Array 타입이 아닌 경우에는, origin 데이터를 Array 타입을 변경 후, 전달되어진 value 데이터를 APPEND 처리 |
+| XIdentify  | prepend(key, value) | key값으로 전송된 value 데이터를 서버측에 존재하는 key값의 origin 데이터에 JOIN(INSERT) 처리 하도록 지정. 만약 서버측 데이터가 현재 Array 타입이 아닌 경우에는, origin 데이터를 Array 타입을 변경 후, 전달되어진 value 데이터를 INSERT 처리 |
+
+```java
+
+// XIdentify에 1개 이상의 항목이 설정 되어야 합니다.
+DOX.userIdentify(
+    new XIdentify.Builder()
+        .setOnce("ID", "MRCM")
+        .set("action", "loginSuccess")
+        .add("visitCount", 1)
+        .build());
+```
+
+#### 6.2.3 Event 분석
+
+logXEvent()는 앱 내에서 발생하는 다양한 이벤트 데이터를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+
+**XEvent.class**
+
+| Class 이름  | Method 이름          | 파라미터                         |
+| ----------- | -------------------- | -------------------------------- |
+| XEvent      | setEventName(value)  | event name 값을 전달             |
+| XEvent      | setProperties(value) | xProperties 값을 전달            |
+| XProperties | set(key, value)      | xProperties key, value 값을 전달 |
+
+```java
+
+// logXEvent()는 XEvent Object를 파라미터로 전달 받고 있으며, XEvent Object 의 setEventName()은 Required 속성을 가집니다.
+// 필요한 경우 XEvent Object의 setProperties()를 사용하면, event와 관련된 사용자 정의 데이터를 추가할 수 있습니다.
+
+// Example 1
+DOX.logXEvent(
+    new XEvent.Builder()
+        .setEventName("mypage")
+        .build());
+// Example 2
+DOX.logXEvent(
+    new XEvent.Builder()
+        .setEventName("my page with some data")
+        .setProperties(
+            new XProperties.Builder()
+                .set("pageId", "MAIN")
+                .build())
+        .build()));
+```
+
+#### 6.2.4 Conversion 분석
+
+logXConversion()는 앱 내에서 발생하는 이벤트중 분석적 의미가 있는 MicroConversion 이벤트를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+
+**XConversion.class**
+
+| Class 이름  | Method 이름          | 파라미터                         |
+| ----------- | -------------------- | -------------------------------- |
+| XConversion | setEventName(value)  | event name 값을 전달             |
+| XConversion | setProperties(value) | xProperties 값을 전달            |
+| XProperties | set(key, value)      | xProperties key, value 값을 전달 |
+
+```java
+
+// logXConversion()은 XConversion Object를 파라미터로 전달 받고 있으며, XConversion Object의 setConversionName()은 Required 속성을 가집니다.
+// 필요한 경우 XConversion Object의 setProperties()를 사용하면, conversion에 관련된 사용자 정의 데이터를 추가할 수 있습니다.
+
+// Example 1
+DOX.logXConversion(
+    new XConversion.Builder()
+        .setEventName("start tutorial")
+        .build());
+
+// Example 2
+DOX.logXConversion(
+    new XConversion.Builder()
+        .setEventName("Conversion")
+        .setProperties(
+            new XProperties.Builder()
+                .set("pageId", "totualStart")
+                .set("Object", new XProperties.Builder().set("test", "value").build())
+                .set("Array", new int[]{1, 2, 3, 4})
+        .build())
+.build());
+```
+
+#### 6.2.5 Purchase 분석
+
+logXPurchase()는 앱 내에서 발생하는 구매 이벤트를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+
+**XPurchase.class**
+
+| Class 이름   | Method 이름                                                | 파라미터 |
+| ----------- | --------------------------------------------------------- | ----------------------------------------------------- |
+| XPurchase   | **setOrderNo(value)** **Required**                        | 구매와 관련된 주문 번호를 설정 |
+| XPurchase   | **setRevenueType(value)** **Required**                      | 발생된 이벤트가 구매 또는 환불인지를 구분할 수 있는 값을 설정 |
+| XPurchase   | **setCurrency(value)** **Required**                       | 결제 진행에 사용된 통화 코드를 설정 |
+| XPurchase   | **setProduct(product)** **Required**                      | 구매된 상품 정보를 설정 |
+| XPurchase   | **setProductList(List\*<Product\*> value)** **Required**      | 구매된 상품 정보를 설정 |
+| XProduct    | **setFirstCategory(value)** **Required**                  | 상품에 대한 대분류 상품 카테코리 정보를 설정 |
+| XProduct    | setSecondCategory(value)                                  | 상품에 대한 중분류 상품 카테코리 정보를 설정 |
+| XProduct    | setThirdCategory(value)                                   | 상품에 대한 소분류 상품 카테코리 정보를 설정 |
+| XProduct    | setDetailCategory(value)                                  | 상품에 대한 상세 카테코리 정보를 설정 |
+| XProduct    | **setProductCode(value)** **Required**                    | 상품을 식별할 수 있는 상품코드를 설정 |
+| XProduct    | **setOrderAmount(value)** **Required**                    | 상품 구매 금액 합계를 설정 (단가, 수량) |
+| XProduct    | **seOrderQuantity(value)** **Required**                   | 상품 구매 수량을 설정 |
+| XProduct    | setProductOrderNo(value)                                  | 상품 주문 번호 값을 전달 |
+| XProduct    | setProperties(value)                                      | 구매된 각각의 상품과 관련된 사용자 정의 데이터를 추가 |
+| XPurchase   | setProperties(value)                                      | 구매와 관련된 사용자 정의 데이터를 추가 |
+| XProperties | set(key, value)                                           | xProperties key, value 값을 전달 |
+
+```java
+// Example 1 
+DOX.logXPurchase(
+    new XPurchase.Builder()
+        .setCurrency("KRW")
+        .setRevenueType("Purchase")
+        .setOrderNo("new_order_number_1")
+        .setProduct(
+            new XProduct.Builder()
+                .setFirstCategory("CAT1")
+                .setSecondCategory("CAT2")
+                .setThirdCategory("CAT3")
+                .setDetailCategory("CAT4")
+                .setProductCode("product_code1")
+                .setOrderQuantity(1)
+                .setOrderAmount(10000)
+                .setProperties(
+                    new XProperties.Builder()
+                        .set("isSale", "50%")
+                        .build())
+                .build())
+        .build());
 ```
