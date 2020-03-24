@@ -60,6 +60,10 @@
       {
         "name": "Unity",
         "link": "/docs/SDK/Unity"
+      },
+      {
+        "name": "Cocos2d-x",
+        "link": "/docs/SDK/Cocos2d-x"
       }
     ]
   }
