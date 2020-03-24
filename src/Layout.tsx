@@ -57,7 +57,7 @@ export function RootLayout({ children, sidebarRoot }: any) {
         const [h3TagList, setH3TagList] = useState(null)
         useEffect(() => {
           console.log('LAYOUT 2')
-          setH3TagList([...document.querySelectorAll('H3')])
+          setH3TagList([...document.querySelectorAll('H2')])
         }, [])
 
         console.log(pathName)
@@ -112,7 +112,7 @@ export function RootLayout({ children, sidebarRoot }: any) {
                           (h3s, idx) => (
                             console.log(h3s),
                             (
-                              <div key={idx}>
+                              <div key={idx} className="lists-h2s">
                                 <a href={'#' + h3s.id}>{h3s.textContent}</a>
                               </div>
                             )

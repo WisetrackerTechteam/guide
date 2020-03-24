@@ -103,6 +103,11 @@ pre[class*='language-'] > code {
   background-attachment: local;
   margin-bottom: 30px;
 }
+.contents-doc img {
+  max-width: 850px;
+  border: 1px solid rgba(150, 150, 150, 0.2);
+  border-radius: 2px;
+}
 .token.selector,
 .token.attr-name,
 .token.string,
@@ -734,6 +739,7 @@ pre[class*='language-'].line-numbers.line-numbers code {
   padding-left: 0px;
 }
 .contents-list {
+  max-width: 230px;
   position: fixed;
   right: 60px;
   top: 150px;
@@ -742,8 +748,14 @@ pre[class*='language-'].line-numbers.line-numbers code {
   border-radius: 2px;
   font-size: 12px;
 }
+.lists-h2s {
+  margin-bottom: 8px;
+}
 .contents-list a {
   color: rgba(0, 0, 0, 0.45);
+}
+.contents-list a:hover {
+  color: rgba(0, 0, 0, 0.9);
 }
 .contents-list-title {
   font-weight: 700;
