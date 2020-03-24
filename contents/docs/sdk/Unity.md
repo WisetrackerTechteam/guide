@@ -1,16 +1,17 @@
+# Unity 가이드
 
-## 1. 유니티 플러그인 설치 (AOS/IOS 공통 설정)
+## 1. 플러그인 설치 (AOS/IOS 공통 설정)
 
 ### 1.1 유니티 패키지 다운로드
 유니티 플러그인 패키지(RW.unitypackage)를 다운로드 해주세요.
 
 [패키지 다운로드](https://github.com/WisetrackerTechteam/RW-unity-package)
 
-### 1.2 유니티 패키지 임포트
+### 1.2 패키지 임포트
 -> Unity Tools에서 Assets > Import Package > Custom Package 메뉴 선택
    다운로드 받은 **RW.unitypackage** 파일을 선택해 주세요
 
-## 2. 유니티 Android 설정
+## 2. Android 설정
 
 ### 2.1 strings.xml 설정
 -> /Assets/Plugins/Android/res/values/strings.xml
@@ -64,10 +65,21 @@
 </activity>
 ```
 
-## 3. 유니티 iOS 설정
+## 3. iOS 설정
 
-### 3.1 couchbase.framework 추가
-### 3.2 other Linker Flag -ObjC 옵션 추가
+### 3.1 CouchbaseLite.framework 추가
+제공한 CouchbaseLite.framework파일을 **Targets - General - Frameworkd, Libraries, and embedded Content** 메뉴에 
+**Embed & Sign**옵션으로 추가합니다. 
+
+아래와 같이 Unity iOS에 필요한 라이브러리 및 프레임워크 파일이 정상적으로 설치되었음을 확인할 수 있습니다.
+
+![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/unity_framework_s.png)
+
+### 3.2 Other Linker Flag -ObjC 옵션 추가
+
+**Tagets -  Build Settings - Other Linker Flags**에 **-ObjC** 옵션을 추가합니다.
+![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/unity_otherlinkerflag.png)
+
 ### 3.3 info.plist 세팅
 XCode 프로젝트의 info.plist 파일에 제공받은 App Analytics Key 정보를 추가합니다
 info.plist 파일을 open할때 **list로 보기** 가 아니라 **source로 보기**를 선탁하신뒤, 제공받으신 Key를 **Ctrl+V** 하시면 됩니다
