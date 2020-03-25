@@ -6,13 +6,15 @@
 
 Javascript Library는 Web Page에서 Native SDK로 데이터를 전달할 수 있도록 해주는 Client Side Library 입니다
 이 Library는 분석 대상 앱의 웹 컨텐츠를 분석하고자 하는 경우에 사용되며, 사용하기 이전에 반드시 Native SDK의 설치가 선행되어야 합니다
-다른 플렛폼 환경을 선택하여 Native SDK 설치 방법을 확인 하세요
+다른 플렛폼 환경을 선택하여 Native SDK 설치 방법을 확인 하세요.
 
 ### 1.2 Library 확인
 
 #### iOS
 
-dop-native-sdk-inf.js 스크린캡처
+SDK가 정상적으로 설치가 되면 Javascript Library는 해당 경로는 아래와 같습니다.
+
+![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/sdk_inf.png)
 
 #### Android
 

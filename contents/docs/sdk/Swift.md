@@ -24,6 +24,10 @@ Podfile 에 해당라인을 추가한 후 Terminal 프로그램을 실행하여 
 cmd> pod install
 ```
 
+정상적으로 설치가 되면 아래와 같은 폴더 구조를 확인할 수 있습니다.
+
+![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/rw_podinstall.png)
+
 ### 1.2 SDK 세팅
 
 XCode 프로젝트의 info.plist 파일에 제공받은 App Analytics Key 정보를 추가합니다
