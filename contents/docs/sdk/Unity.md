@@ -7,16 +7,10 @@
 유니티 플러그인 패키지(RW.unitypackage)를 다운로드 해주세요.
 [패키지 다운로드](https://github.com/WisetrackerTechteam/RW-unity-package)
 
-<<<<<<< HEAD
 ### 1.2 패키지 임포트
--> Unity Tools에서 Assets > Import Package > Custom Package 메뉴 선택
-   다운로드 받은 **RW.unitypackage** 파일을 선택해 주세요
-=======
-### 1.2 유니티 패키지 임포트
-
 Unity Tools에서 Assets -> Import Package -> Custom Package 메뉴 선택 -> 다운로드 받은 **RW.unitypackage** 파일을 선택
->>>>>>> ba0f9caf9eeac7bbf259949388675985ce076d3e
 
+![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/rw_unity_package_import-1024x975.png)
 ## 2. Android 설정
 
 ### 2.1 AuthorizationKey 설정
