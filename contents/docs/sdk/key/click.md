@@ -1,9 +1,4 @@
-# Click Key
-* [Click](./click.md#Click)
-* [Product](./click.md#Product)
-* [Multi Variable](./click.md#Multi-Variable)
-
-### <a id="Page"></a> Click
+## Click
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | 이벤트 | event | 화면명 | 
@@ -12,7 +7,7 @@
 | 푸시메시지 클릭수 | PSH | 사용자가 수신되는 푸시 메시지를 클릭한 횟수를 분석 | |
 | 장바구니 상품 분석 | SCRT | 사용자가 장바구니에 담은 상품을 분석 |
 
-### <a id="Product"></a> Product
+## Product
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | 상품카테고리(대) | pg1 | 구매한 상품의 카테고리 ( 대 )  |
@@ -33,7 +28,7 @@
 | 상품 Attribute 9 | pnAtr9 | 상품 속성 9 |
 | 상품 Attribute 10 | pnAtr10 | 상품 속성 10 |
 
-### <a id="Multi-Variable"></a> Multi Variable
+## Multi Variable (사용자 정의 변수)
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | Multi Variable 1  | mvt1  | 클릭과 연관된 정보를 전달하여 전달된 값 기준으로의 구매 데이터 분석 |

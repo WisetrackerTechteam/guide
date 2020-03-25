@@ -195,7 +195,7 @@ DOT.setUser(
 
 ### 5.2 Page 분석
 
-[분석 가능 Page Key](./key/page.md) **해당 목록에 들어있는 key 값에 한해 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
+[분석 가능 Page Key](../SDK/key/page) **해당 목록에 들어있는 key 값에 한해 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
 ### 5.2.1 Page Identiy 분석 
 
@@ -275,7 +275,7 @@ DOT.logScreen(page);
 ```
 
 ### 5.3 Click 분석
-[분석 가능 Click Key](./key/click.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
+[분석 가능 Click Key](../SDK/key/click) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
 ### 5.3.1 검색 결과 클릭 분석 
 
@@ -338,7 +338,7 @@ DOT.logClick(click);
 SDK는 총 80개의 Conversion을 사용자가 정의하고, 분석 코드를 적용함으로써 앱으로 인하여 발생하는 Conversion 측정이 가능합니다.  
 이는, **구매 전환과는 독립적으로 분석되며, 사용자는 언제든지 분석 코드의 적용 기준을 새로 정의할 수** 있습니다.  
   
-[분석 가능 Conversion Key](./key/goal.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.  
+[분석 가능 Conversion Key](../SDK/key/goal) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.  
 
 ```c#
 // Conversion 1번의 사용 예시
@@ -377,7 +377,7 @@ DOT.logEvent(conversion);
 
 ### 5.5 Purchase 분석
 
-[분석 가능 Purchase Key](./key/purchase.md) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다.분석을 희망하는 key 값을 확인후 적용해 주세요.  
+[분석 가능 Purchase Key](../SDK/key/purchase) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다.분석을 희망하는 key 값을 확인후 적용해 주세요.  
 앱내에서 발생하는 구매 이벤트를 분석합니다. 구매 완료 페이지에서 아래와 같이 구매와 관련된 정보를 SDK에 전달해 주세요.
 
 #### 5.5.1 Purchase 제품 분석

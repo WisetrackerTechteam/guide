@@ -1,15 +1,4 @@
-# Goal Key
-* [Product](./goal.md#Product)
-* [Multi Variable](./goal.md#Multi-Variable)
-* [Goal](./goal.md#Goal)
-* [Ecommerce](./goal.md#Ecommerce)
-* [Travel](./goal.md#Travel)
-* [Entertainment](./goal.md#Entertainment)
-* [Game](./goal.md#Game)
-* [Fintech](./goal.md#Fintech)
-* [Mobility](./goal.md#Mobility)
-
-### <a id="Product"></a> Product
+## Product
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | 상품카테고리(대) | pg1 | 구매한 상품의 카테고리 ( 대 )  |
@@ -30,7 +19,7 @@
 | 상품 Attribute 9 | pnAtr9 | 상품 속성 9 |
 | 상품 Attribute 10 | pnAtr10 | 상품 속성 10 |
 
-### <a id="Multi-Variable"></a> Multi Variable
+## Multi Variable (사용자 정의 변수)
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | Multi Variable 1  | mvt1  | 구매와 연관된 정보를 전달하여 전달된 값 기준으로의 구매 데이터 분석 |
@@ -56,7 +45,7 @@
 | Multi Variable 10 | useLatestMvt10 | 사용자가 구매 이전에 마지막으로 검색한 MVT10 데이터를 같이 사용할지 여부 선택 |
 
 
-### <a id="Goal"></a> Goal
+## Goal
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | 성과값 #01 | g1 | 사용자 정의 전환 설정 #01 ( 회원가입 )  | 
@@ -140,7 +129,7 @@
 | 성과값 #79 | g79 | 사용자 정의 전환 설정 #79 |
 | 성과값 #80 | g80 | 사용자 정의 전환 설정 #80 |
 
-### <a id="Ecommerce"></a> Ecommerce
+## Ecommerce
 | 분석항목 | 키 |
 | :------ | :------ | 
 | 브랜드명 | s_brandNm |  
@@ -152,7 +141,7 @@
 | 환불 코드 | s_refundTp |
 | 쿠폰 타입 | s_coupon |  
 
-### <a id="Travel"></a> Travel
+## Travel
 | 분석항목 | 키 |
 | :------ | :------ |
 | 국가 | t_cntr |
@@ -185,7 +174,7 @@
 | 카테고리명 | t_categoryNm |
 | 통화코드 | t_curcy |
 
-### <a id="Entertainment"></a> Entertainment
+## Entertainment
 | 분석항목 | 키 |
 | :------ | :------ |
 | 트라이얼 수단 | e_trial | 
@@ -218,7 +207,7 @@
 | 서브타입a | e_languageSubA | 
 | 서브타입b | e_languageSubB | 
 
-### <a id="Game"></a> Game
+## Game
 | 분석항목 | 키 |
 | :------ | :------ |
 | 인앱 광고명 | g_inAppAd |
@@ -233,7 +222,7 @@
 | 서브타입a | g_levelSubA |
 | 서브타입b | g_levelSubB |
 
-### <a id="Fintech"></a> Fintech
+## Fintech
 | 분석항목 | 키 |
 | :------ | :------ |
 | 대출명 | f_loanNm |
@@ -258,7 +247,7 @@
 | 금융사a | f_financialA |
 | 금융사b | f_financialB |
 
-### <a id="Mobility"></a> Mobility
+## Mobility
 | 분석항목 | 키 |
 | :------ | :------ |
 | 호출ID | m_callId |

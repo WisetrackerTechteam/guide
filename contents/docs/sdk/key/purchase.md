@@ -1,14 +1,5 @@
-# Purchase Key
-* [Product](./purchase.md#Product)
-* [Multi Variable](./purchase.md#Multi-Variable)
-* [Ecommerce](./purchase.md#Ecommerce)
-* [Travel](./purchase.md#Travel)
-* [Entertainment](./purchase.md#Entertainment)
-* [Game](./purchase.md#Game)
-* [Fintech](./purchase.md#Fintech)
-* [Mobility](./purchase.md#Mobility)
 
-### <a id="Product"></a> Product
+## Product
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | 상품카테고리(대) | pg1 | 구매한 상품의 카테고리 ( 대 )  |
@@ -39,7 +30,7 @@
 | Npay Transaction Id | npayTid | Npay 를 사용하여 간편 결제시, Npay 에서 발급해준 Tid 값을 설정|
 | 통화단위 | curcy | 매출액이 발생한 통화 단위|
 
-### <a id="Multi-Variable"></a> Multi Variable
+## Multi Variable (사용자 정의 변수)
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | Multi Variable 1  | mvt1  | 구매와 연관된 정보를 전달하여 전달된 값 기준으로의 구매 데이터 분석 |
@@ -64,7 +55,7 @@
 | Multi Variable 9  | useLatestMvt9  | 사용자가 구매 이전에 마지막으로 검색한 MVT9 데이터를 같이 사용할지 여부 선택 |
 | Multi Variable 10 | useLatestMvt10 | 사용자가 구매 이전에 마지막으로 검색한 MVT10 데이터를 같이 사용할지 여부 선택 |
 
-### <a id="Ecommerce"></a> Ecommerce
+## Ecommerce
 | 분석항목 | 키 |
 | :------ | :------ | 
 | 브랜드명 | s_brandNm |  
@@ -76,7 +67,7 @@
 | 환불 코드 | s_refundTp |
 | 쿠폰 타입 | s_coupon |  
 
-### <a id="Travel"></a> Travel
+## Travel
 | 분석항목 | 키 |
 | :------ | :------ |
 | 국가 | t_cntr |
@@ -109,7 +100,7 @@
 | 카테고리명 | t_categoryNm |
 | 통화코드 | t_curcy |
 
-### <a id="Entertainment"></a> Entertainment
+## Entertainment
 | 분석항목 | 키 |
 | :------ | :------ |
 | 트라이얼 수단 | e_trial | 
@@ -142,7 +133,7 @@
 | 서브타입a | e_languageSubA | 
 | 서브타입b | e_languageSubB | 
 
-### <a id="Game"></a> Game
+## Game
 | 분석항목 | 키 |
 | :------ | :------ |
 | 인앱 광고명 | g_inAppAd |
@@ -157,7 +148,7 @@
 | 서브타입a | g_levelSubA |
 | 서브타입b | g_levelSubB |
 
-### <a id="Fintech"></a> Fintech
+## Fintech
 | 분석항목 | 키 |
 | :------ | :------ |
 | 대출명 | f_loanNm |
@@ -182,7 +173,7 @@
 | 금융사a | f_financialA |
 | 금융사b | f_financialB |
 
-### <a id="Mobility"></a> Mobility
+## Mobility
 | 분석항목 | 키 |
 | :------ | :------ |
 | 호출ID | m_callId |

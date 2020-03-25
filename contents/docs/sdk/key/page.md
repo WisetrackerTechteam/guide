@@ -1,16 +1,4 @@
-# Page Key
-* [Page](./page.md#Page)
-* [Product](./page.md#Product)
-* [Multi Variable](./page.md#Multi-Variable)
-* [Ecommerce](./page.md#Ecommerce)
-* [Travel](./page.md#Travel)
-* [Entertainment](./page.md#Entertainment)
-* [Game](./page.md#Game)
-* [Fintech](./page.md#Fintech)
-* [Mobility](./page.md#Mobility)
-
-
-### <a id="Page"></a> Page
+## Page
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | 이벤트 | event | 화면명 | 
@@ -20,7 +8,7 @@
 | 동적컨텐츠 | cp | 앱내 모든 컨텐츠에 사용자가 정의한 hierarchical 한 text값을 SDK에 전달하여, 앱내 선호되는 컨텐츠를 분석 |
 | Page Identity | pi | 앱내 주요한 페이지들에 대해서 Identity 를 정의하고, 정의된 Identity code값별로 트래픽을 분석 
 
-### <a id="Product"></a> Product
+## Product
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | 상품카테고리(대) | pg1 | 구매한 상품의 카테고리 ( 대 )  |
@@ -41,7 +29,7 @@
 | 상품 Attribute 9 | pnAtr9 | 상품 속성 9 |
 | 상품 Attribute 10 | pnAtr10 | 상품 속성 10 |
 
-### <a id="Multi-Variable"></a> Multi Variable
+## Multi Variable (사용자 정의 변수)
 | 분석항목 | 키 | 설명 |
 | :------ | :------ | :------ |
 | Multi Variable 1  | mvt1  | 구매와 연관된 정보를 전달하여 전달된 값 기준으로의 구매 데이터 분석 |
@@ -55,7 +43,7 @@
 | Multi Variable 9  | mvt9  | 구매와 연관된 정보를 전달하여 전달된 값 기준으로의 구매 데이터 분석 |
 | Multi Variable 10 | mvt10 | 구매와 연관된 정보를 전달하여 전달된 값 기준으로의 구매 데이터 분석 |
 
-### <a id="Ecommerce"></a> Ecommerce
+## Ecommerce
 | 분석항목 | 키 |
 | :------ | :------ | 
 | 브랜드명 | s_brandNm |  
@@ -67,7 +55,7 @@
 | 환불 코드 | s_refundTp |
 | 쿠폰 타입 | s_coupon |  
 
-### <a id="Travel"></a> Travel
+## Travel
 | 분석항목 | 키 |
 | :------ | :------ |
 | 국가 | t_cntr |
@@ -100,7 +88,7 @@
 | 카테고리명 | t_categoryNm |
 | 통화코드 | t_curcy |
 
-### <a id="Entertainment"></a> Entertainment
+## Entertainment
 | 분석항목 | 키 |
 | :------ | :------ |
 | 트라이얼 수단 | e_trial | 
@@ -133,7 +121,7 @@
 | 서브타입a | e_languageSubA | 
 | 서브타입b | e_languageSubB | 
 
-### <a id="Game"></a> Game
+## Game
 | 분석항목 | 키 |
 | :------ | :------ |
 | 인앱 광고명 | g_inAppAd |
@@ -148,7 +136,7 @@
 | 서브타입a | g_levelSubA |
 | 서브타입b | g_levelSubB |
 
-### <a id="Fintech"></a> Fintech
+## Fintech
 | 분석항목 | 키 |
 | :------ | :------ |
 | 대출명 | f_loanNm |
@@ -173,7 +161,7 @@
 | 금융사a | f_financialA |
 | 금융사b | f_financialB |
 
-### <a id="Mobility"></a> Mobility
+## Mobility
 | 분석항목 | 키 |
 | :------ | :------ |
 | 호출ID | m_callId |
