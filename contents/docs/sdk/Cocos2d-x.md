@@ -92,7 +92,8 @@ app/strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
 
 ### 2.2.3 딥링크 설정
 
-AndroidManifest.xml 파일에 딥링크로 진입할 android:scheme="YOUR_SCHEME" 스키마와 android:host="YOUR_HOST" 호스트를 설정해 주세요.
+AndroidManifest.xml 파일에 딥링크로 진입할 **android:scheme="YOUR_SCHEME"** 스키마와 **android:host="YOUR_HOST"** 호스트를 설정해 주세요.  
+(**딥링크를 통해서 앱이 실행되는 경로 분석이 필요한 경우에 적용**)
 
 ```xml
 <!--  예시는 wisetracker://wisetracker.co.kr 링크로 진입시 딥링크 분석이 가능 -->
