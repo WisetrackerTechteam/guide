@@ -109,10 +109,20 @@ AndroidManifest.xml 파일에 딥링크로 진입할 android:scheme="YOUR_SCHEME
 </activity>
 ```
 
-## 3. Cocos2d-x iOS 설정
+## 3. iOS 설정
+### 3.1 CouchbaseLite.framework, GameController.framework, MediaPlayer.framework 추가
+제공한 CouchbaseLite.framework파일을 **Targets - General - Frameworkd, Libraries, and embedded Content** 메뉴에 
+**Embed & Sign**옵션으로 추가합니다. 
 
-### 3.1 couchbase.framework 추가
-### 3.2 other Linker Flag -ObjC 옵션 추가
+기본 제공되는 GameController.framework, MediaPlayer.framework 도 추가해줍니다.
+
+![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/cocos2d_frameworks.png)
+
+### 3.2 Other Linker Flag -ObjC 옵션 추가
+
+**Tagets -  Build Settings - Other Linker Flags**에 **-ObjC** 옵션을 추가합니다.
+![] (http://www.wisetracker.co.kr/wp-content/uploads/2020/03/cocos2d_otherlinker.png)
+
 ### 3.3 info.plist 세팅
 XCode 프로젝트의 info.plist 파일에 제공받은 App Analytics Key 정보를 추가합니다
 info.plist 파일을 open할때 **list로 보기** 가 아니라 **source로 보기**를 선탁하신뒤, 제공받으신 Key를 **Ctrl+V** 하시면 됩니다
