@@ -119,7 +119,7 @@ AndroidManifest.xml 파일에 딥링크로 진입할 **android:scheme="YOUR_SCHE
 </activity>
 ```
 
-## 3. iOS 코르도바 플러그인 설정
+## 3. iOS 설정
 
 XCode 프로젝트의 info.plist 파일에 제공받은 App Analytics Key 정보를 추가합니다
 info.plist 파일을 open할때 **list로 보기** 가 아니라 **source로 보기**를 선탁하신뒤, 제공받으신 Key를 **Ctrl+V** 하시면 됩니다

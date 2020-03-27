@@ -83,7 +83,7 @@ AndroidManifest.xml 파일에 딥링크로 진입할 **android:scheme="YOUR_SCHE
 </activity>
 ```
 
-## 3. iOS 리액트 플러그인 설정
+## 3. iOS 설정
 
 ### 3.1 Framework & Bridge 파일 세팅
 
@@ -156,6 +156,6 @@ import DotReactBridge from 'DotReactNativeBridge/wrapper/react/DotReactBridge.js
 import Dop from 'DotReactNativeBridge/dop-native-sdk-inf.js'
 ```
 
-## 5. 인앱 분석
+## 5. 인앱분석
 
 Javascrip 가이드 내 2. 기분 분석, 3. 고급 컨텐츠 분석 ( optional )을 참조하시기 바랍니다.
