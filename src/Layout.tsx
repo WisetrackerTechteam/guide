@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { Header } from './Header'
+import { Footer } from './Footer'
 import { pathPrefix } from '../gatsby-config'
 import { Layout } from 'antd'
 import { Sidebar } from './sidebar'
 import { TableOfContents } from './TableOfContents'
 import './css/style.css'
 
-const { Sider, Content, Footer } = Layout
+const { Sider, Content } = Layout
 
 export function RootLayout({ children, sidebarRoot }: any) {
   return (
@@ -105,7 +106,7 @@ export function RootLayout({ children, sidebarRoot }: any) {
                 </Content>
                 {pathName[0] === 'docs' ? (
                   <div className="contents-list">
-                    <div className="contents-list-title">Contents</div>
+                    <div className="contents-list-title">Table of Contents</div>
                     {h3TagList === null
                       ? null
                       : h3TagList.map(
@@ -130,6 +131,7 @@ export function RootLayout({ children, sidebarRoot }: any) {
                 style={{ background: '#fff', height: '100%' }}
               />
             </Layout>
+            <Footer />
           </div>
         )
       }}

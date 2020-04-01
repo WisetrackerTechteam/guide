@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Button, Icon } from 'antd'
-import { StaticQuery, graphql } from 'gatsby'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
 
