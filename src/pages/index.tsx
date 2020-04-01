@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { Row, Col } from 'antd'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
+
+import AndroidIcon from '../images/icons/android.svg'
 
 const IndexPage = () => {
   return (
@@ -18,7 +21,14 @@ const IndexPage = () => {
           </Link>
         </div>
       </div>
-      <div style={{ paddingTop: '150px' }}>asd</div>
+      <div className="index-contents">
+        <Row>
+          <Col span={12}>
+            <img src={AndroidIcon} alt="" />
+          </Col>
+          <Col span={12}>ASD</Col>
+        </Row>
+      </div>
       <Footer />
     </>
   )

@@ -35,35 +35,35 @@
     "items": [
       {
         "name": "Android",
-        "link": "/docs/SDK/Android"
+        "link": "/docs/sdk/Android"
       },
       {
         "name": "Objective-C",
-        "link": "/docs/SDK/Objectc"
+        "link": "/docs/sdk/Objectc"
       },
       {
         "name": "Swift",
-        "link": "/docs/SDK/Swift"
+        "link": "/docs/sdk/Swift"
       },
       {
         "name": "Javascript",
-        "link": "/docs/SDK/Javascript"
+        "link": "/docs/sdk/Javascript"
       },
       {
         "name": "Cordova",
-        "link": "/docs/SDK/Cordova"
+        "link": "/docs/sdk/Cordova"
       },
       {
         "name": "React Native",
-        "link": "/docs/SDK/Reactnative"
+        "link": "/docs/sdk/Reactnative"
       },
       {
         "name": "Unity",
-        "link": "/docs/SDK/Unity"
+        "link": "/docs/sdk/Unity"
       },
       {
         "name": "Cocos2d-x",
-        "link": "/docs/SDK/Cocos2d-x"
+        "link": "/docs/sdk/Cocos2d-x"
       }
     ]
   }

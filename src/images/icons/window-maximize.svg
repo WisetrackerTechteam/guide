@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="22px" viewBox="0 0 24 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>window-maximize</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M21.75,1.5 L2.25,1.5 C1.0078125,1.5 0,2.5078125 0,3.75 L0,20.25 C0,21.4921875 1.0078125,22.5 2.25,22.5 L21.75,22.5 C22.9921875,22.5 24,21.4921875 24,20.25 L24,3.75 C24,2.5078125 22.9921875,1.5 21.75,1.5 Z M21.75,19.96875 C21.75,20.1234375 21.6234375,20.25 21.46875,20.25 L2.53125,20.25 C2.3765625,20.25 2.25,20.1234375 2.25,19.96875 L2.25,9 L21.75,9 L21.75,19.96875 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy" transform="translate(-380.000000, -517.000000)">
+            <g id="Regular/window-maximize" transform="translate(380.000000, 516.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="Color/Purple-Copy" mask="url(#mask-2)" fill="#3D3A45" fill-rule="evenodd">
+                    <rect id="Purple" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
