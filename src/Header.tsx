@@ -13,7 +13,9 @@ export class Header extends Component<Props> {
       <div className={'header'}>
         <Row className={'header-aligns'}>
           <Link to="/">
-            <span className="logo">Wisetracker Developers</span>
+            <div className="logo">
+              <span className="logo-text">Documents</span> >_
+            </div>
           </Link>
           <Button type="primary" style={{ alignSelf: 'end' }}>
             Wisetracker Login

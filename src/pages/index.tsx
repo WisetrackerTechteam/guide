@@ -1,44 +1,28 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Button, Icon } from 'antd'
+import { StaticQuery, graphql } from 'gatsby'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
 
 const IndexPage = () => {
   return (
-    <div align="center" style={{ padding: 80 }}>
-      <p
-        style={{
-          color: 'cornflowerblue',
-          fontSize: 50,
-          fontWeight: 'bold',
-        }}
-      >
-        Gatsby Ant Design Docs Boilerplate
-      </p>
-      <h2>A gatsby starter to create documentation websites</h2>
-      <p>
-        This is a fork of{' '}
-        <a href="https://github.com/cvluca/gatsby-starter-markdown">
-          https://github.com/cvluca/gatsby-starter-markdown
-        </a>
-      </p>
-      <br />
-      <Button.Group size="large">
-        <Button href="https://twitter.com/jannikbuschke" target="_blank">
-          Twitter
-          <Icon type="twitter" />
-        </Button>
-        <Button
-          href="https://github.com/jannikbuschke/gatsby-antd-docs"
-          target="_blank"
-        >
-          Github
-          <Icon type="github" />
-        </Button>
-        <Button type="primary">
-          <Link to="/docs/get-started/introduction">Get Started</Link>
-        </Button>
-      </Button.Group>
-    </div>
+    <>
+      <Header />
+      <div className="index-visual">
+        <div className="index-title">Measure with Wisetracker</div>
+        <div className="index-btns">
+          <Link className="btn-outline" to="/docs/get-started/introduction">
+            Sign Up
+          </Link>
+          <Link className="btn-outline" to="/docs/get-started/introduction">
+            Documents
+          </Link>
+        </div>
+      </div>
+      <div style={{ paddingTop: '150px' }}>asd</div>
+      <Footer />
+    </>
   )
 }
 
