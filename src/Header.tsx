@@ -17,7 +17,10 @@ export class Header extends Component<Props> {
               <span className="logo-text">Documents</span> >_
             </div>
           </Link>
-          <Button type="primary" style={{ alignSelf: 'end' }}>
+          <Button
+            style={{ alignSelf: 'end', marginTop: '22px', marginRight: '17px' }}
+            size="small"
+          >
             Wisetracker Login
           </Button>
         </Row>

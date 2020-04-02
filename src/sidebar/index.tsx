@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql, StaticQuery, Link } from 'gatsby'
 import { Affix, Menu } from 'antd'
 import 'antd/lib/menu/style/css'
@@ -25,7 +25,6 @@ function isLinkItem(item: MenuItem): item is LinkItem {
 }
 
 function render(item: MenuItem, id: string) {
-  console.log(isLinkItem(item))
   if (isLinkItem(item)) {
     return (
       <Menu.Item key={item.link}>
@@ -73,13 +72,28 @@ export function Sidebar() {
             ? window.location.pathname.replace(pathPrefix, '')
             : '/'
         const defaultOpenKeys = rootItems.map(item => item.id)
+        // const results = rootItems.map(b =>
+        //   b.items.filter(({ link }) => link.startsWith(currentPath))
+        // )
+        // const openKey = defaultOpenKeys[results.length - 1]
+        // const [openKeys, setOpenKeys] = useState(null)
+        // console.log(openKeys, openKey)
+        // setOpenKeys(openKey)
+        // console.log(rootItemsItems.indexOf(currentPath))
         return (
           <Affix>
             <Menu
               mode="inline"
-              style={{ minWidth: 250, height: '100%', borderRight: 0 }}
+              style={{
+                minWidth: 250,
+                height: '100%',
+                borderRight: 0,
+              }}
               defaultOpenKeys={defaultOpenKeys}
               selectedKeys={[currentPath]}
+              //   onOpenChange={e => setOpenKeys(e)}
+              //   onSelect={e => console.log(e)}
+              //   onClick={e => console.log(e)}
             >
               {rootItems.map(v => render(v, v.id))}
             </Menu>

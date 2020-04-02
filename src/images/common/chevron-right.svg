@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="13px" viewBox="0 0 9 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>chevron-right</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M11.1615679,8.00723877 L5.467896,13.7008813 C5.19329639,13.975481 4.74810108,13.975481 4.47353077,13.7008813 L3.8094585,13.0368091 C3.53532764,12.7626782 3.5348003,12.3183911 3.80828663,12.0436157 L8.32062061,7.5100415 L3.80828663,2.97649658 C3.5348003,2.70172119 3.53532764,2.25743408 3.8094585,1.98330322 L4.47353077,1.31923096 C4.74813038,1.04463135 5.19332569,1.04463135 5.467896,1.31923096 L11.1615386,7.01287354 C11.4361382,7.28744385 11.4361382,7.73263916 11.1615679,8.00723877 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy" transform="translate(-552.000000, -757.000000)">
+            <g id="Solid/chevron-right" transform="translate(549.000000, 756.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="Color/Purple" mask="url(#mask-2)" fill="#D3D3D3" fill-rule="evenodd">
+                    <rect id="Purple" x="0" y="0" width="15" height="15"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

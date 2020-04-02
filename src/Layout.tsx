@@ -57,13 +57,13 @@ export function RootLayout({ children, sidebarRoot }: any) {
         // const h3TagList = document.getElementsByTagName('H3')
         const [h3TagList, setH3TagList] = useState(null)
         useEffect(() => {
-          console.log('LAYOUT 2')
+          //   console.log('LAYOUT 2')
           setH3TagList([...document.querySelectorAll('H2')])
         }, [])
 
-        console.log(pathName)
-        console.log(h3TagList)
-        console.log('LAYOUT 1')
+        // console.log(pathName)
+        // console.log(h3TagList)
+        // console.log('LAYOUT 1')
         return (
           <div style={{ width: '100%', padding: 0, overflow: 'hidden' }}>
             <Helmet
@@ -80,10 +80,11 @@ export function RootLayout({ children, sidebarRoot }: any) {
             <div
               style={{
                 height: '100%',
+                paddingTop: '70px',
               }}
             >
               <div className="sider">
-                <div style={{ paddingTop: '10px' }}>
+                <div>
                   <Sidebar root={sidebarRoot} />
                 </div>
               </div>
@@ -109,16 +110,12 @@ export function RootLayout({ children, sidebarRoot }: any) {
                     <div className="contents-list-title">Table of Contents</div>
                     {h3TagList === null
                       ? null
-                      : h3TagList.map(
-                          (h3s, idx) => (
-                            console.log(h3s),
-                            (
-                              <div key={idx} className="lists-h2s">
-                                <a href={'#' + h3s.id}>{h3s.textContent}</a>
-                              </div>
-                            )
-                          )
-                        )}
+                      : h3TagList.map((h3s, idx) => (
+                          // console.log(h3s),
+                          <div key={idx} className="lists-h2s">
+                            <a href={'#' + h3s.id}>{h3s.textContent}</a>
+                          </div>
+                        ))}
                   </div>
                 ) : null}
               </Layout>
