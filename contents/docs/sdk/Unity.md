@@ -4,21 +4,20 @@
 
 ### 1.1 유니티 패키지 다운로드
 
-유니티 플러그인 패키지(RW.unitypackage)를 다운로드 해주세요.
+유니티 플러그인 패키지(`RW.unitypackage`)를 다운로드 해주세요.
 [패키지 다운로드](https://github.com/WisetrackerTechteam/RW-unity-package)
 
 ### 1.2 패키지 임포트
-Unity Tools에서 Assets -> Import Package -> Custom Package 메뉴 선택 -> 다운로드 받은 **RW.unitypackage** 파일을 선택
+Unity Tools에서 Assets -> Import Package -> Custom Package 메뉴 선택 -> 다운로드 받은 `RW.unitypackage` 파일을 선택해 주세요.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/rw_unity_package_import-1024x975.png)
 ## 2. Android 설정
 
 ### 2.1 AuthorizationKey 설정
 
-strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
+`Assets/Plugins/Android/res/values/strings.xml` 파일에 제공받은 `App Analytics Key` 정보를 추가해 주세요.
 
 ```xml
-<!-- /Assets/Plugins/Android/res/values/strings.xml -->
 <string-array name="dotAuthorizationKey">
     <item name="usdMode">1</item>                                           // (1) DOT/DOX (2) DOT
     <item name="domain">http://collector.naver.wisetracker.co.kr</item>     // DOT END POINT
@@ -34,11 +33,9 @@ strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
 
 ### 2.2 딥링크 설정
 
-AndroidManifest.xml 파일에 딥링크로 진입할 **android:scheme="YOUR_SCHEME"** 스키마와 **android:host="YOUR_HOST"** 호스트를 설정해 주세요.  
-(**딥링크를 통해서 앱이 실행되는 경로 분석이 필요한 경우에 적용**)
+`Assets/Plugins/Android/AndroidManifest.xml` 파일에서 앱의 환경에 맞춰 `android:host`, `android:scheme` 값을 변경해 주세요.
               
 ```xml
-<!-- /Assets/Plugins/Android/AndroidManifest.xml --> 
 <!--  예시는 wisetracker://wisetracker.co.kr 링크로 진입시 딥링크 분석이 가능 -->
 <activity android:name="kr.co.wisetracker.UnityDeepLink" 
           android:launchMode="singleTop" >
@@ -115,6 +112,8 @@ http통신을 허용하기 위해 NSAppTransportSecurity 를 아래와 같이 �
 
 ### 4.1 초기화
 
+앱 시작시 `초기화` 코드 삽입
+
 ```c#
 void Awake() 
 {
@@ -130,10 +129,11 @@ void Awake()
 
 ### 4.2 체류 시간 분석
 
+체류시간 분석 페이지 `진입`과 `이탈`시 각각 아래와 같이 코드를 삽입해 주세요.  
+
 ```c#
 void Start() 
 {
-    // 씬 시작시
     // 체류 시간 분석을 위한 시간(분 단위)을 넣어주세요
     // 예) 15분 단위로 체류 페이지 자동 전송
     DOT.onPlayStart(15);	
@@ -143,7 +143,6 @@ void Start()
 ```c#
 void OnDestroy() 
 {
-    // 씬 종료시
     DOT.onPlayStop();
 }
 ```
@@ -161,12 +160,12 @@ void OnApplicationPause(bool pauseStatus)
 
 ## 5. 고급 컨텐츠 분석
 
-in-App 에서 발생하는 다양한 이벤트를 분석하기 위해서는 분석 대상 앱에서 해당 이벤트가 발생되는 시점에 SDK로 해당 정보를 전달해야 합니다.  
+`in-App` 에서 발생하는 다양한 이벤트를 분석하기 위해서는 분석 대상 앱에서 해당 이벤트가 발생되는 시점에 SDK로 해당 정보를 전달해야 합니다.  
 이어지는 내용에서는 주요 이벤트들의 분석 방법에 대해서 자세하게 설명합니다.
 
 ### 5.1 회원 분석
 
-사용자 정보 분석을 합니다.
+`사용자 정보 분석`을 합니다.
 
 ```java 
 DOT.setUser(
@@ -195,11 +194,11 @@ DOT.setUser(
 
 ### 5.2 Page 분석
 
-[분석 가능 Page Key](../SDK/key/page) **해당 목록에 들어있는 key 값에 한해 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
+[분석 가능 Page Key](./key/page.md). `해당 목록에 들어있는 key 값`에 한해 `분석이 가능`합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
 ### 5.2.1 Page Identiy 분석 
 
-앱에 존재하는 각 페이지가 의미하는 Identity를 각 화면들에 적용하면, 앱에서 가장 사용 빈도가 높은 화면별 랭킹을 알 수 있습니다.
+앱에 존재하는 각 페이지가 의미하는 `Identity`를 각 화면들에 적용하면 앱에서 가장 사용 빈도가 높은 화면별 랭킹을 알 수 있습니다.
 
 ```c#
 DOT.onStartPage();
@@ -210,7 +209,7 @@ DOT.logScreen(page);
 
 ### 5.2.2 상품 페이지 분석 
 
-e-commerce 앱의 경우 상품 상세 페이지에 분석코드를 적용하여, 상품별 조회수를 분석합니다.
+`e-commerce` 앱의 경우 상품 상세 페이지에 분석코드를 적용하여 상품별 조회수를 분석합니다.
 
 ```c#
 DOT.onStartPage();
@@ -233,7 +232,7 @@ DOT.logScreen(page);
 
 ### 5.2.3 Contents Path 분석 
 
-앱의 각 페이지에 Hierarchical 한 Contents Path를 적용하면, 각 컨텐츠의 사용 비율을 카테고리별로 그룹화 하여 분석이 가능합니다.
+앱의 각 페이지에 `Hierarchical` 한 `Contents Path`를 적용하면 각 컨텐츠의 사용 비율을 카테고리별로 그룹화 하여 분석이 가능합니다.
 
 ```c#
 DOT.onStartPage();
@@ -246,7 +245,7 @@ DOT.logScreen(page);
 
 ### 5.2.4 사용자 정의 분석
 
-사용자 정의 분석 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
+`사용자 정의 분석` 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
 
 ```c#
 DOT.onStartPage();
@@ -261,7 +260,7 @@ DOT.logScreen(page);
 
 ### 5.2.5 내부 검색어 분석 
 
-앱에 검색기능이 있는 경우 사용자가 입력한 검색어와, 검색한 카테고리, 검색 결과수등을 분석하면 검색 기능의 활용성을 측정할 수 있습니다.  
+앱에 검색기능이 있는 경우 사용자가 입력한 `검색어`와, 검색한 `카테고리`, `검색 결과수` 등을 분석하면 검색 기능의 활용성을 측정할 수 있습니다.  
 검색 결과가 보여지는 화면에 분석 코드를 적용합니다.
 
 ```c#
@@ -275,13 +274,13 @@ DOT.logScreen(page);
 ```
 
 ### 5.3 Click 분석
-[분석 가능 Click Key](../SDK/key/click) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
+[분석 가능 Click Key](../SDK/key/click) `해당 목록에 들어있는 key 값`에 한해 `분석이 가능`합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
 ### 5.3.1 검색 결과 클릭 분석 
 
-검색 결과 페이지에서 보여지는 많은 검색 결과 항목별 클릭수를 분석합니다.
-이 분석 결과를 통해서 검색 결과의 상단에 노출되는 항목들이 적절한지 가늠할 수 있습니다.
-검색 결과 페이지에서 특정 항목이 클릭되면, 해당 화면으로 이동하기 이전에 아래와 같이 분석 코드를 적용하세요.
+검색 결과 페이지에서 보여지는 많은 검색 결과 항목별 `클릭수`를 분석합니다.  
+이 분석 결과를 통해서 검색 결과의 상단에 노출되는 항목들이 적절한지 가늠할 수 있습니다.  
+검색 결과 페이지에서 특정 항목이 클릭되면, 해당 화면으로 이동하기 이전에 아래와 같이 분석 코드를 적용하세요.  
 
 ```c#
 Dictionary<string, object> click = new Dictionary<string, object>();
@@ -291,7 +290,7 @@ DOT.logClick(click);
 
 ### 5.3.2 장바구니 담긴 상품 분석 
 
-e-commerce 관련된 비즈니스의 경우 장바구니에 담긴 상품을 분석할 수 있습니다.
+`e-commerce` 관련된 비즈니스의 경우 장바구니에 담긴 상품을 분석할 수 있습니다.
 
 ```c#
 Dictionary<string, object> click = new Dictionary<string, object>();
@@ -306,7 +305,7 @@ DOT.logClick(click);
 
 ### 5.3.3 클릭 이벤트 분석 
 
-앱에 존재하는 다양한 클릭 요소(배너, 버튼 등)에 대해서 클릭수를 분석합니다. 각 요소가 클릭되는 시점에 아래와 같은 분석 코드를 적용하세요.
+앱에 존재하는 다양한 클릭 요소(`배너`, `버튼` 등)에 대해서 `클릭수`를 분석합니다. 각 요소가 클릭되는 시점에 아래와 같은 분석 코드를 적용해 주세요.
 
 ```c#
 Dictionary<string, object> click = new Dictionary<string, object>();
@@ -318,7 +317,7 @@ DOT.logClick(click);
 
 ### 5.3.4 사용자 정의 분석
 
-사용자 정의 분석 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
+`사용자 정의 분석` 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
 
 ```c#
 // 클릭 이벤트 분석시 Multi Variables 분석값을 같이 전송하는 예시
@@ -335,10 +334,10 @@ DOT.logClick(click);
 
 가장 대표적으로 구매 전환을 생각할 수 있지만, 앱내에는 앱이 제공하는 서비스에 따라서 매우 다양한 Conversion이 존재할 수 있습니다.  
 또한, 이미 정의된 Conversion 일지라도, 서비스의 변화, 시대의 변화애 따라서 새로 정의되어야 하기도 하며, 사용하지 않아서 폐기되기도 합니다.  
-SDK는 총 80개의 Conversion을 사용자가 정의하고, 분석 코드를 적용함으로써 앱으로 인하여 발생하는 Conversion 측정이 가능합니다.  
-이는, **구매 전환과는 독립적으로 분석되며, 사용자는 언제든지 분석 코드의 적용 기준을 새로 정의할 수** 있습니다.  
-  
-[분석 가능 Conversion Key](../SDK/key/goal) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.  
+SDK는 총 `80개`의 `Conversion`을 사용자가 정의하고, 분석 코드를 적용함으로써 앱으로 인하여 발생하는 Conversion 측정이 가능합니다.  
+이는, **구매 전환과는 독립적으로 분석되며, 사용자는 언제든지 분석 코드의 적용 기준을 새로 정의** 할 수 있습니다.  
+
+[분석 가능 Conversion Key](../SDK/key/goal) `해당 목록에 들어있는 key 값`에 한해 `분석이 가능`합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
 
 ```c#
 // Conversion 1번의 사용 예시
@@ -349,7 +348,7 @@ DOT.logEvent(conversion);
 
 ### 5.4.1 Conversion 상품 분석 
 
-단순하게 Conversion 발생 횟수를 측정할 수도 있으나, 상품과 연계하여 상품별로 정의한 Conversion 발생 횟수 측정이 가능합니다. 
+단순하게 Conversion 발생 횟수를 측정할 수도 있으나, 상품과 연계하여 `상품별`로 정의한 Conversion 발생 횟수 측정이 가능합니다. 
 
 ```c#
 Dictionary<string, object> conversion = new Dictionary<string, object>();
@@ -363,7 +362,7 @@ DOT.logEvent(conversion);
 
 ### 5.4.2 사용자 정의 분석
 
-사용자 정의 분석 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
+`사용자 정의 분석` 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
 
 ```c#
 Dictionary<string, object> conversion = new Dictionary<string, object>();
@@ -377,8 +376,8 @@ DOT.logEvent(conversion);
 
 ### 5.5 Purchase 분석
 
-[분석 가능 Purchase Key](../SDK/key/purchase) **해당 목록에 들어있는 key 값에 한해서 분석이 가능**합니다.분석을 희망하는 key 값을 확인후 적용해 주세요.  
-앱내에서 발생하는 구매 이벤트를 분석합니다. 구매 완료 페이지에서 아래와 같이 구매와 관련된 정보를 SDK에 전달해 주세요.
+[분석 가능 Purchase Key](../SDK/key/purchase) `해당 목록에 들어있는 key 값`에 한해 `분석이 가능`합니다. 분석을 희망하는 key 값을 확인후 적용해 주세요.
+앱내에서 발생하는 `구매 이벤트`를 분석합니다. 구매 완료 페이지에서 아래와 같이 구매와 관련된 정보를 SDK에 전달해 주세요.
 
 #### 5.5.1 Purchase 제품 분석
 
@@ -397,7 +396,7 @@ DOT.logPurchase(purchase);
 
 #### 5.5.2 Purchase 사용자 정의 분석
 
-사용자 정의 분석 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
+`사용자 정의 분석` 항목은 사용자가 그 항목에 전달할 값을 직접 정의하여 사용이 가능합니다.
 
 ```c#
 Dictionary<string, object> purchase = new Dictionary<string, object>();
@@ -413,11 +412,11 @@ DOT.logPurchase(purchase);
 
 ### 6.1 기본 설정
 
-'#' 구분자 기준으로 왼쪽은 기본 사용되고 있는 키 값 오른쪽은 변경하고자 하는 키 값을 적용해주세요.  
-(**미설정시 기본 설정된 키 값으로 자동 적용됩니다.**)
+`#` 구분자 기준으로 왼쪽은 `기본키` 오른쪽은 `커스텀키`를 적용해주세요.  
+`미설정시 기본키로 자동 적용됩니다.`
 
 ```xml
-<!-- 예시는 기본 Session에 포함된 advtId 키 값을 advt_id 값으로 변경하는 설정 -->
+<!-- 예시는 advtId 기본키 값을 advt_id 커스텀키 값으로 변경하는 설정 -->
 <string-array name="customKeyList">
   <item name="custom_key_value1">advtId#advt_id</item>
 </string-array>
@@ -427,7 +426,7 @@ DOT.logPurchase(purchase);
 
 #### 6.2.1 GroupIdentify 분석
 
-GroupIdentify는 Group 기준의 데이터 타입이 필요한 경우 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+`GroupIdentify`는 `Group 기준`의 데이터 타입이 필요한 경우 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
 
 **XIdentify.class**
 
@@ -454,7 +453,7 @@ DOX.groupIdentify("company", "gsshop",
 
 #### 6.2.2 UserIdentify 분석
 
-UserIdentify()는 User 기준의 데이터 타입이 필요한 경우 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+`UserIdentify`는 `User 기준`의 데이터 타입이 필요한 경우 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
 
 **XIdentify.class**
 
@@ -482,7 +481,7 @@ DOX.userIdentify(
 
 #### 6.2.3 Event 분석
 
-logXEvent()는 앱 내에서 발생하는 다양한 이벤트 데이터를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+`Event`는 앱 내에서 발생하는 다양한 이벤트 데이터를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
 
 **XEvent.class**
 
@@ -515,7 +514,7 @@ DOX.logXEvent(
 
 #### 6.2.4 Conversion 분석
 
-logXConversion()는 앱 내에서 발생하는 이벤트중 분석적 의미가 있는 MicroConversion 이벤트를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+`Conversion`은 앱 내에서 발생하는 이벤트중 분석적 의미가 있는 `MicroConversion 이벤트`를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
 
 **XConversion.class**
 
@@ -551,7 +550,7 @@ DOX.logXConversion(
 
 #### 6.2.5 Purchase 분석
 
-logXPurchase()는 앱 내에서 발생하는 구매 이벤트를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
+`Purchase`는 앱 내에서 발생하는 구매 이벤트를 전송하고자 하는 경우에 사용되며, 다음과 같은 사용상의 관계를 가지고 있습니다.
 
 **XPurchase.class**
 

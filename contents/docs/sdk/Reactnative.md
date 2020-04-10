@@ -3,7 +3,7 @@
 ## 1. 리액트 플러그인 설치 (AOS/IOS 공통 설정)
 
 ### 1.1 플러그인 다운로드
--> 터미널에서 아래의 명령어를 통해 리액트 플러그인을 프로젝트에 다운로드 합니다.
+터미널에서 아래의 명령어를 통해 리액트 플러그인을 프로젝트에 다운로드 합니다.
 
 ```shell
 $ npm install --save git+https://github.com/WisetrackerTechteam/RW-react-package.git
@@ -17,7 +17,25 @@ $ npm install --save git+https://github.com/WisetrackerTechteam/RW-react-package
 
 ## 2. Android 설정
 
-### 2.1 Http 통신 허용 설정
+### 2.1 AuthorizationKey 설정
+
+Android 프로젝트 `app/res/values/strings.xml` 파일에 제공받은 `App Analytics Key` 정보를 추가해 주세요.
+
+```xml
+<string-array name="dotAuthorizationKey">
+    <item name="usdMode">1</item>                                           // (1) DOT/DOX (2) DOT
+    <item name="domain">http://collector.naver.wisetracker.co.kr</item>     // DOT END POINT
+    <item name="domain_x">http://collector.naver.wisetracker.co.kr</item>   // DOX END POINT
+    <item name="serviceNumber">103</item>
+    <item name="expireDate">14</item>
+    <item name="isDebug">false</item>
+    <item name="isInstallRetention">true</item>
+    <item name="isFingerPrint">true</item>
+    <item name="accessToken">access_token_string</item>
+</string-array>
+```
+
+### 2.2 Http 통신 허용 설정
 
 프로젝트의 **Target API 28** 이상일 경우 Http 통신 허용 추가
 
@@ -43,32 +61,12 @@ $ npm install --save git+https://github.com/WisetrackerTechteam/RW-react-package
 </network-security-config>
 ```
 
-### 2.2 AuthorizationKey 설정
-
-strings.xml 파일에 제공받은 App Analytics Key 정보를 추가
-
-```xml
-<!-- /Assets/Plugins/Android/res/values/strings.xml -->
-<string-array name="dotAuthorizationKey">
-    <item name="usdMode">1</item>                                           // (1) DOT/DOX (2) DOT
-    <item name="domain">http://collector.naver.wisetracker.co.kr</item>     // DOT END POINT
-    <item name="domain_x">http://collector.naver.wisetracker.co.kr</item>   // DOX END POINT
-    <item name="serviceNumber">103</item>
-    <item name="expireDate">14</item>
-    <item name="isDebug">false</item>
-    <item name="isInstallRetention">true</item>
-    <item name="isFingerPrint">true</item>
-    <item name="accessToken">access_token_string</item>
-</string-array>
-```
-
 ### 2.3 딥링크 설정
 
-AndroidManifest.xml 파일에 딥링크로 진입할 **android:scheme="YOUR_SCHEME"** 스키마와 **android:host="YOUR_HOST"** 호스트를 설정해 주세요.  
-(**딥링크를 통해서 앱이 실행되는 경로 분석이 필요한 경우에 적용**)
+`AndroidManifest.xml` 파일에서 앱의 환경에 맞춰 `android:host`, `android:scheme` 값을 변경해 주세요.
+`딥링크 진입 분석 필요시 설정해 주세요.`
               
 ```xml
-<!-- /Assets/Plugins/Android/AndroidManifest.xml --> 
 <!--  예시는 wisetracker://wisetracker.co.kr 링크로 진입시 딥링크 분석이 가능 -->
 <activity android:name="kr.co.wisetracker.tracker.DeepLinkActivity" 
           android:launchMode="singleTop" >
