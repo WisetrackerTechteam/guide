@@ -39,8 +39,8 @@ Android 프로젝트 `app/build.gradle` 파일 `dependencies` 블록에 의존�
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar']) 
     ....
-    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.77'
-    implementation 'com.sdk.wisetracker.new_dot:new_dot_module_test:0.0.77'
+    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.84'
+    implementation 'com.sdk.wisetracker.new_dot:new_dot_module_test:0.0.84'
 }
 ```
 
@@ -89,9 +89,16 @@ Android 프로젝트 `app/res/values/strings.xml` 파일에 제공받은 `App An
 </network-security-config>
 ```
 
-### 2.2.3 딥링크 설정
+### 2.3 유입 경로 분석
 
-`AndroidManifest.xml` 파일에서 앱의 환경에 맞춰 `android:host`, `android:scheme` 값을 변경해 주세요.
+#### 2.3.1 딥링크 분석
+
+`딥링크`를 통해 앱이 실행되는 `경로 분석`이 필요한 경우 적용해 주세요.
+
+##### 딥링크 설정
+
+`AndroidManifest.xml` 파일에서 앱의 환경에 맞춰 딥링크로 오픈되는 `Activity`의 `android:host`, `android:scheme` 값을 변경해 주세요.
+
 
 ```xml
 <!--  예시는 wisetracker://wisetracker.co.kr 링크로 진입시 딥링크 분석이 가능 -->

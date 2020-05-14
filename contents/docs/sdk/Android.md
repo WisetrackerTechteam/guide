@@ -8,9 +8,9 @@ Android 프로젝트 `app/build.gradle` 파일의 `dependencies` 블록에 의�
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     ....
-    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.77'       // BASE
-    implementation 'com.sdk.wisetracker.new_dot:new_dot_module_test:0.0.77' // DOT
-    implementation 'com.sdk.wisetracker.dox:dox_module_test:0.0.77'         // DOX
+    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.84'       // BASE
+    implementation 'com.sdk.wisetracker.new_dot:new_dot_module_test:0.0.84' // DOT
+    implementation 'com.sdk.wisetracker.dox:dox_module_test:0.0.84'         // DOX
 }
 ```
 
@@ -62,7 +62,7 @@ Android 프로젝트 `app/res/values/strings.xml` 파일에 제공받은 `App An
 
 ### 2.1 페이지 분석
 
-기본 페이지 분석을 위해 각 화면의 진입점에 다음과 같은 코드를 적용해 주세요.
+기본 페이지 분석을 위해 각 화면의 `진입점`에 다음과 같은 코드를 적용해 주세요.
 
 ```java
 @Override
@@ -76,11 +76,11 @@ protected void onResume() {
 
 ### 3.1 딥링크 분석
 
-딥링크를 통해 앱이 실행되는 경로 분석이 필요한 경우 적용해 주세요.
+`딥링크`를 통해 앱이 실행되는 `경로 분석`이 필요한 경우 적용해 주세요.
 
 #### 3.1.1 딥링크 등록
 
-`AndroidManifest.xml` 파일에서 앱의 환경에 맞춰 `android:host`, `android:scheme` 값을 변경해 주세요.
+`AndroidManifest.xml` 파일에서 앱의 환경에 맞춰 딥링크로 오픈되는 `Activity`의 `android:host`, `android:scheme` 값을 변경해 주세요.
 
 ```xml
 <!-- 예시는 wisetracker://wisetracker.co.kr 링크로 앱 진입 경우 -->
@@ -126,7 +126,7 @@ public class DeepLinkActivity extends Activity {
 
 #### 3.2.1 푸시 토큰 설정
 
-(1) `Activity`에서 푸시 토큰 설정
+##### (1) `Activity`에서 푸시 토큰 설정
 
 ```java
 @Override
@@ -145,7 +145,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-(2) `FirebaseMessagingService`를 상속받는 `Service`에서 푸시 토큰 설정
+##### (2) `FirebaseMessagingService`를 상속받는 `Service`에서 푸시 토큰 설정
 
 ```java
 public class FcmService extends FirebaseMessagingService {

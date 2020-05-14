@@ -11,6 +11,7 @@
 Unity Tools에서 Assets -> Import Package -> Custom Package 메뉴 선택 -> 다운로드 받은 `RW.unitypackage` 파일을 선택해 주세요.
 
 ![](http://www.wisetracker.co.kr/wp-content/uploads/2020/03/rw_unity_package_import-1024x975.png)
+
 ## 2. Android 설정
 
 ### 2.1 AuthorizationKey 설정
@@ -31,13 +32,19 @@ Unity Tools에서 Assets -> Import Package -> Custom Package 메뉴 선택 -> �
 </string-array>
 ```
 
-### 2.2 딥링크 설정
+### 2.2 유입 경로 분석
+
+#### 2.2.1 딥링크 분석
+
+`딥링크`를 통해 앱이 실행되는 `경로 분석`이 필요한 경우 적용해 주세요.
+
+##### 딥링크 설정
 
 `Assets/Plugins/Android/AndroidManifest.xml` 파일에서 앱의 환경에 맞춰 `android:host`, `android:scheme` 값을 변경해 주세요.
               
 ```xml
 <!--  예시는 wisetracker://wisetracker.co.kr 링크로 진입시 딥링크 분석이 가능 -->
-<activity android:name="kr.co.wisetracker.UnityDeepLink" 
+<activity android:name="com.sdk.wisetracker.unity.UnityDeepLink" 
           android:launchMode="singleTop" >
     <intent-filter>
         <action android:name="android.intent.action.VIEW" />
