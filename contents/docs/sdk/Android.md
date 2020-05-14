@@ -8,9 +8,9 @@ Android 프로젝트 `app/build.gradle` 파일의 `dependencies` 블록에 의�
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     ....
-    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.84'       // BASE
-    implementation 'com.sdk.wisetracker.new_dot:new_dot_module_test:0.0.84' // DOT
-    implementation 'com.sdk.wisetracker.dox:dox_module_test:0.0.84'         // DOX
+    implementation 'com.sdk.wisetracker.base:base_module_test:0.0.85'       // BASE
+    implementation 'com.sdk.wisetracker.new_dot:new_dot_module_test:0.0.85' // DOT
+    implementation 'com.sdk.wisetracker.dox:dox_module_test:0.0.85'         // DOX
 }
 ```
 
